@@ -1,0 +1,31 @@
+# Workspace New Command for a Java Project
+
+The following prompts demonstrate how to create a new project with GitHub Copilot and its `@workspace /new` command. There are several iterations of the same prompt adding additional detail to the new project request to explore how far GitHub Copilot can go to create a great start to a new project!
+
+To run these commands, open the GitHub Copilot in Visual Studio Code.
+
+## Iteration 1 - Simply Create a Java Project
+
+```text
+@workspace /new Create a new Java project.
+```
+
+## Iteration 2 - Create a simple Java Project
+
+```text
+@workspace /new Create a simple Java project. Do not include unit tests, do not create extra classes, and do not use a build tool like Maven or Gradle.
+```
+
+## Iteration 3 - Create a simple Java Project using Maven as the Build Tool.
+
+```text
+@workspace /new Create a simple Java project. Do not include unit tests and do not create extra classes. Configure the project with the Maven build tool.
+```
+
+## Iteration 4 - Create a simple Java Project with Unit Test
+
+```text
+@workspace /new Create a simple Java project. Do not create extra classes. Configure the project with the Maven build tool. Add a unit test using JUnit.
+```
+
+
