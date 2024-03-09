@@ -13,6 +13,7 @@ Below are the course modules and resource links used in the course. We will not 
 
 include::01_opening-demos/00_module-content.adoc[]
 
+include::02_copilot-suggestions/00_module-content.adoc[]
 
 
 == Conclusion

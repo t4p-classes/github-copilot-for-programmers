@@ -1,0 +1,33 @@
+== Module 2: Copilot Suggestions and Visual Studio Code
+
+While Copilot is supported by many editors, the most popular editor is Visual Studio Code. The following notes will help you start with GitHub Copilot in Visual Studio Code. Below are some notes on how to use Copilot in Visual Studio Code. If using another editor, refer to the official instructions at the links above.
+
+=== Practical Copilot Techniques for Visual Studio Code
+
+- Open a source file, write a comment description of what you want, type `<ENTER>`, and a suggestion should appear on the following line.
+  - If you like the suggestion, hit `<TAB>` on the keyboard to accept.
+  - If the suggestion is unacceptable and you want to type something else, type `<ESC>` on the keyboard to decline the suggestion. Then, you may continue typing.
+  - If no suggestion appears, or the suggestion disappears, and you want it back, then hit `<ALT> + \` on the keyboard; if there is a suggestion, it will appear.
+  - When there are multiple suggestions, to view them, type `<ALT>+]` or `<ALT>+[` to cycle left and right through them. Also, you can hover over the suggestion with your mouse cursor to see more.
+  - To view multiple suggestions in a new editor tab, type `<CTRL> + <ENTER>` to open a new tab and review the generated suggestions.
+
+=== Useful Copilot Chat Techniques for Visual Studio Code
+
+- To open a chat session to discuss a code snippet, highlight the code in the editor and type `<CTRL>+i` on Windows and Linux and `<CMD>+i` on macOS.
+- If you do not understand some lines of code, highlight them, right-click, and select `Copilot` -> `Explain This` from the context menu.
+- If you want to fix some lines of code, highlight them, right-click, and choose `Copilot` -> `Fix This` from the context menu.
+- To get help within Copilot Chat, open the chat panel, type in `/help`, and then hit `<ENTER>`. A good summary of available Copilot Chat commands will appear.
+- `@<SOME SCOPE>` handles your prompts within a scope; there are three scopes: `@workspace`, `@vscode`, and `@terminal`
+  - @workspace is for creating new projects and managing existing projects.
+  - @vscode is for editor configuration and managing extensions.
+  - @terminal is for running commands in the terminal.
+
+=== Explore Non-Deterministic Code Suggestions
+
+Deterministic and non-deterministic are terms used to describe the behavior of systems, including computer programs.
+
+A deterministic program is one where, for a given input, the program's output and state will always be the same, no matter how many times you run it. This predictability can make deterministic programs easier to test and debug.
+
+On the other hand, a non-deterministic program is one where the program's output or state can change even with the same input. The varying output could be due to random number generation, system time, concurrent execution, or external system interactions.
+
+As for GitHub Copilot, OpenAI Codex powers Copilot; OpenAI Codex is a model trained on various public sources, including code repositories. GitHub Copilot provides non-deterministic suggestions. While GitHub designed Copilot to provide relevant code suggestions based on the context of your code, the exact suggestions can vary even in similar contexts. The variation is due to the underlying machine learning model, which has a degree of randomness in its outputs.

@@ -1,6 +1,9 @@
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Remove comment around @import statement below when using as a custom stylesheet */
 /*@import url("//fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700");*/
+
+@import url("//fonts.googleapis.com/css?family=Roboto:400,700,400italic,400bold");
+
 article,
 aside,
 details,
@@ -32,7 +35,7 @@ script {
   display: none !important;
 }
 html {
-  font-family: sans-serif;
+  font-family: Roboto, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -190,7 +193,7 @@ body {
   color: rgba(0, 0, 0, 0.8);
   padding: 0;
   margin: 0;
-  font-family: "Noto Serif", "DejaVu Serif", serif;
+  font-family: Roboto, "Noto Serif", "DejaVu Serif", serif;
   font-weight: 400;
   font-style: normal;
   line-height: 1;
@@ -260,7 +263,7 @@ select {
 p.lead,
 .paragraph.lead > p,
 #preamble > .sectionbody > .paragraph:first-of-type p {
-  font-size: 1.21875em;
+  font-size: 1rem;
   line-height: 1.6;
 }
 .subheader,
@@ -346,8 +349,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Open Sans", "DejaVu Sans", sans-serif;
-  font-weight: 300;
+  font-family: Roboto, "Open Sans", "DejaVu Sans", sans-serif;
+  font-weight: 400;
   font-style: normal;
   color: #ba3925;
   text-rendering: optimizeLegibility;
@@ -514,7 +517,7 @@ blockquote p {
   h3,
   #toctitle,
   .sidebarblock > .content > .title {
-    font-size: 1.6875em;
+    font-size: 1.8em;
   }
   h4 {
     font-size: 1.4375em;
@@ -775,7 +778,7 @@ body.toc2 #header > h1:nth-last-child(2) {
   margin: 0.5em 0;
 }
 #toc ul {
-  font-family: "Open Sans", "DejaVu Sans", sans-serif;
+  font-family: Roboto, "Open Sans", "DejaVu Sans", sans-serif;
   list-style-type: none;
 }
 #toc li {
@@ -1000,7 +1003,7 @@ table.tableblock > .title,
 .hdlist > .title {
   text-rendering: optimizeLegibility;
   text-align: left;
-  font-family: "Noto Serif", "DejaVu Serif", serif;
+  font-family: Roboto, "Noto Serif", "DejaVu Serif", serif;
   font-size: 1rem;
   font-style: italic;
 }
@@ -1031,7 +1034,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 }
 .admonitionblock > table td.icon .title {
   font-weight: bold;
-  font-family: "Open Sans", "DejaVu Sans", sans-serif;
+  font-family: Roboto, "Open Sans", "DejaVu Sans", sans-serif;
   text-transform: uppercase;
 }
 .admonitionblock > table td.content {
@@ -1268,7 +1271,7 @@ table.pyhltable .linenodiv {
   margin: 0 1em 1.25em 1em;
 }
 .verseblock pre {
-  font-family: "Open Sans", "DejaVu Sans", sans;
+  font-family: Roboto, "Open Sans", "DejaVu Sans", sans;
   font-size: 1.15rem;
   color: rgba(0, 0, 0, 0.85);
   font-weight: 300;
@@ -1785,7 +1788,7 @@ span.icon > .fa {
   width: 1.67em;
   height: 1.67em;
   line-height: 1.67em;
-  font-family: "Open Sans", "DejaVu Sans", sans-serif;
+  font-family: Roboto, "Open Sans", "DejaVu Sans", sans-serif;
   font-style: normal;
   font-weight: bold;
 }
@@ -1831,7 +1834,7 @@ blockquote,
 dt,
 td.content,
 span.alt {
-  font-size: 1.0625rem;
+  font-size: 1rem;
 }
 p {
   margin-bottom: 1.25rem;
