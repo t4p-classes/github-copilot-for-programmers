@@ -7,7 +7,7 @@ build tools you would like.
 . Open the C++ file with the `main` function. Replace the code in the file, 
    with this code.
 
-[source,cpp]
+[source,cpp,.indent-4]
 ----
 #include <iostream>
 #include <string>
