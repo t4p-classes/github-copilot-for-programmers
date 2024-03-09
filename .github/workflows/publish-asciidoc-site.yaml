@@ -28,9 +28,10 @@ jobs:
       with:
         version: 2.0.22
 
-    - run: gem install pygments.rb
+    - name: Install Pygments
+      run: gem install pygments.rb
 
-    - name: Build AsciiDoc site
+    - name: Build AsciiDoc Site
       run: asciidoctor -a source-highlighter=pygments -a stylesdir=`pwd`/courseware -a stylesheet=theme.css -D site courseware/index.adoc
 
     - name: Upload artifact
