@@ -29,7 +29,7 @@ jobs:
         version: 2.0.22
 
     - name: Build AsciiDoc site
-      run: asciidoctor -a stylesdir=`pwd`/courseware-adoc -a stylesheet=theme.css -D site courseware-adoc/index.adoc
+      run: asciidoctor -a stylesdir=`pwd`/courseware -a stylesheet=theme.css -D site courseware/index.adoc
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
