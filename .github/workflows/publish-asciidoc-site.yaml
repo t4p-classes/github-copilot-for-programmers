@@ -29,7 +29,7 @@ jobs:
         version: 2.0.22
 
     - name: Build AsciiDoc site
-      run: asciidoctor courseware-adoc -D site
+      run: asciidoctor courseware-adoc/**/*.adoc -D site 
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
