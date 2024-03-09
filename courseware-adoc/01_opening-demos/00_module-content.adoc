@@ -8,8 +8,8 @@ Some editors require two extensions: one for the Copilot suggestions and one for
 
 === GitHub Copilot Editor Extensions
 
-- xref:https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot[Getting Started with Copilot Editor Extensions]
-- xref:https://docs.github.com/en/copilot/github-copilot-chat/using-github-copilot-chat-in-your-ide[Getting Started with Copilot Chat Editor Extensions]
+- https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot[Getting Started with Copilot Editor Extensions,window=_blank]
+- https://docs.github.com/en/copilot/github-copilot-chat/using-github-copilot-chat-in-your-ide[Getting Started with Copilot Chat Editor Extensions,window=_blank]
 
 === Explore GitHub Copilot Demos
 
