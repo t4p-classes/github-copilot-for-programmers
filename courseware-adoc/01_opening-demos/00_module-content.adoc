@@ -1,0 +1,21 @@
+== Module 1: Official GitHub Copilot Extension/Plugin Links
+
+GitHub Copilot is a web-based service that requires a GitHub account and active license via subscription. Your GitHub administrator assigns licenses. In addition to the subscription, you must install the GitHub Copilot extension(s) in your IDE.
+
+The following links help start with GitHub Copilot in the officially supported editors. Not all editors support all features of GitHub Copilot. The links include instructions on how to install the extension as well as how to use it.
+
+Some editors require two extensions: one for the Copilot suggestions and one for the chat feature. The chat feature is a way to interact with Copilot to get help, ask questions, and get code suggestions. The chat feature is not available in all editors. JetBrains IDEs support both code suggestions and chat using one plugin.
+
+=== GitHub Copilot Editor Extensions
+
+- xref:https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot[Getting Started with Copilot Editor Extensions]
+- xref:https://docs.github.com/en/copilot/github-copilot-chat/using-github-copilot-chat-in-your-ide[Getting Started with Copilot Chat Editor Extensions]
+
+=== Explore GitHub Copilot Demos
+
+  - [C++ Console App with Visual Studio Code](./01_opening-demo/01_cpp-console-vscode.md)
+  - [Java Console App with Visual Studio Code](./01_opening-demo/02_java-console-vscode.md)
+  - [Python Console App with Visual Studio Code](./01_opening-demo/03_python-console-vscode.md)
+  - [Java Spring Boot REST API with IntelliJ IDEA](./01_opening-demo/04_java-spring-boot-intellij.adoc)
+
+include::04_java-spring-boot-intellij.adoc[]

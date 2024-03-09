@@ -1,4 +1,17 @@
 = GitHub Copilot for Programmers
 
+Welcome to the GitHub Copilot for Programmers training! The following content is the courseware for this course. The course delivery is 100% live coding. Students are encouraged to code with the instructor if they have Copilot ready in Visual Studio Code and optionally in other editors.
 
-include::01_opening-demos/04_java-spring-boot-intellij.adoc[]
+== Welcome!
+
+Below are the course modules and resource links used in the course. We will not use every demo and resource in your training session, but you are encouraged to explore all the resources following class to continue learning.
+
+include::01_opening-demos/00_module-content.adoc[][]
+
+
+
+== Conclusion
+
+Thank you for attending the course! If you have any questions, please get in touch with xref:https://www.linkedin.com/in/ericwgreene[Eric Greene]. We hope you enjoyed the course and learned a lot about GitHub Copilot.
+
+We look forward to serving you in a future course!
