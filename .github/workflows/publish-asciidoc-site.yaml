@@ -31,7 +31,7 @@ jobs:
     - run: gem install pygments.rb
 
     - name: Build AsciiDoc site
-      run: asciidoctor -a stylesdir=`pwd`/courseware -a stylesheet=theme.css -D site courseware/index.adoc
+      run: asciidoctor -a source-highlighter=pygments -a stylesdir=`pwd`/courseware -a stylesheet=theme.css -D site courseware/index.adoc
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
