@@ -19,7 +19,7 @@ jobs:
         python-version: '3.x'
 
     - name: Install AsciiDoc
-      run: sudo apt-get install asciidoctor
+      run: gem install asciidoctor
 
     - name: Build AsciiDoc site
       run: asciidoctor courseware-adoc -D site
