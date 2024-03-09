@@ -18,11 +18,13 @@ jobs:
       with:
         python-version: '3.x'
 
-    - uses: ruby/setup-ruby@v1
+    - name: Install Ruby
+      uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7
 
-    - uses: reitzig/actions-asciidoctor@v2.0.1
+    - name: Install AsciiDoctor
+      uses: reitzig/actions-asciidoctor@v2.0.1
       with:
         version: 2.0.22
 
