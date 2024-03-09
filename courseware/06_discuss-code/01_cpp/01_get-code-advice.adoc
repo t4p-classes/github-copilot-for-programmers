@@ -53,7 +53,9 @@ Compile and run the code, it should work.
 . Highlight the end `Person` class. Open the Copilot chat window. Send Copilot Chat the following prompt.
 
 [source,text]
+----
 @workspace /fix is using getters and setters a good coding style?
+----
 
 [start=3]
 . Copilot Chat can be used to get general feedback on our code. It will offer its opinion on how the code is implemented including coding styles as well as suggest improvements.
