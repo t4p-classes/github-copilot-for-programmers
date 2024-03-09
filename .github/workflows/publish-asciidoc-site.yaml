@@ -19,10 +19,10 @@ jobs:
         python-version: '3.x'
 
     - name: Install AsciiDoc
-      run: sudo apt-get install asciidoc
+      run: sudo apt-get install asciidoctor
 
     - name: Build AsciiDoc site
-      run: asciidoc -R courseware/01_opening-demo/04_java-spring-boot-intellij.adoc -D site
+      run: asciidoctor -R courseware-adoc/04_java-spring-boot-intellij.adoc -D site
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3

@@ -1,3 +1,6 @@
+= Document
+:docinfo: shared
+
 == GitHub Copilot for Programmers: Opening Demo
 
 ===  Create a Spring Boot REST API Application in IntelliJ IDEA
@@ -15,7 +18,7 @@ This is a demo to show how to use GitHub Copilot to help you write a new Java Sp
 - Type: Maven
 - Java Version 21 (or latest)
 
-[indent=2]
+[.indent]
 Click `Next`.  Under `Dependencies`, under the `Web` category, select `Spring Web`. Then, under the `SQL` category, select `H2 Database`. Click `Create`. A new Spring Web Project will be created.
 
 [start=3]
