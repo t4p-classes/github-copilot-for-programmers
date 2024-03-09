@@ -6,7 +6,7 @@ Welcome to the GitHub Copilot for Programmers training! The following content is
 
 Below are the course modules and resource links used in the course. We will not use every demo and resource in your training session, but you are encouraged to explore all the resources following class to continue learning.
 
-include::01_opening-demos/00_module-content.adoc[][]
+include::01_opening-demos/00_module-content.adoc[]
 
 
 
