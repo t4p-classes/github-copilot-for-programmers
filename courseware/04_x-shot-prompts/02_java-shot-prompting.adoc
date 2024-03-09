@@ -1,4 +1,4 @@
-=== X-Shot Prompting for a Java Project
+=== Java X-Shot Prompting
 
 ==== Zero Shot Prompting
 

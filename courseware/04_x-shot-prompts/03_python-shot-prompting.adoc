@@ -1,4 +1,4 @@
-=== X-Shot Prompting for a Python Project
+=== Python X-Shot Prompting
 
 ==== Zero Shot Prompting
 

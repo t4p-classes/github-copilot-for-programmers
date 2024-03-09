@@ -1,4 +1,4 @@
-=== X-Shot Prompting for a C++ Project
+=== C++ X-Shot Prompting
 
 ==== Zero Shot Prompting
 
