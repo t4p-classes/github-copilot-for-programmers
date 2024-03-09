@@ -22,10 +22,14 @@ jobs:
       run: sudo apt-get install asciidoctor
 
     - name: Build AsciiDoc site
-      run: asciidoctor courseware-adoc/04_java-spring-boot-intellij.adoc -D site
+      run: asciidoctor courseware-adoc -D site
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        # Upload entire repository
+        path: 'site'
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./site
+      id: deployment
+      uses: actions/deploy-pages@v4
