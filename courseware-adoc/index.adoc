@@ -1,3 +1,4 @@
+= GitHub Copilot for Programmers
 
 
-Refer to  xref:04_java-spring-boot-intellij.adoc[Java Spring Boot]
+include::01_opening-demos/04_java-spring-boot-intellij.adoc[]

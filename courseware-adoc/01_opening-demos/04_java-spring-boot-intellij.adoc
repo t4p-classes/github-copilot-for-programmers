@@ -1,5 +1,3 @@
-= GitHub Copilot for Programmers
-
 ==  Module 1: Create a Spring Boot REST API Application in IntelliJ IDEA
 
 This is a demo to show how to use GitHub Copilot to help you write a new Java Spring Boot REST API application. These are suggested prompts to use with GitHub Copilot. Feel free modify them or add additional prompts to get the desired results.
