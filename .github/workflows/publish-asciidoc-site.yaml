@@ -29,12 +29,12 @@ jobs:
         version: 2.0.22
 
     - name: Build AsciiDoc site
-      run: asciidoctor courseware-adoc/**/*.adoc -D site 
+      run: asciidoctor -a stylesdir=`pwd`/courseware-adoc -a stylesheet=theme.css -D public courseware-adoc/**/*.adoc
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: 'site'
+        path: public
 
     - name: Deploy to GitHub Pages
       id: deployment
