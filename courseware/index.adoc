@@ -17,6 +17,8 @@ include::02_copilot-suggestions/00_module-content.adoc[]
 
 include::03_copilot-scopes/00_module-content.adoc[]
 
+include::04_x-shot-prompts/00_module-content.adoc[]
+
 
 == Conclusion
 

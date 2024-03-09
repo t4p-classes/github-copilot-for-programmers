@@ -1,0 +1,14 @@
+== Module 4: Prompts and Suggestions
+
+This module goes deeper into how prompts and suggestions work in GitHub Copilot. Also, we will explore additional aspects of prompt engineering.
+
+- What data does Copilot send in the prompts to the GitHub Copilot servers?
+  - Copilot sends the code and comments that you are editing and the relevant surrounding context. The surrounding context includes the current file and other files opened in the editor.
+- What data is retained by GitHub? 
+  - GitHub deletes prompt data after making the suggestion, and GitHub does not store the suggestion after making it. GitHub stores user interaction data for 24 months. GitHub uses this data to improve the Copilot service, not the training AI model. GitHub trains the generative AI model with public source code, not code from private repositories.
+
+  include::01_cpp-shot-prompting.adoc[]
+
+  include::02_java-shot-prompting.adoc[]
+
+  include::03_python-shot-prompting.adoc[]
