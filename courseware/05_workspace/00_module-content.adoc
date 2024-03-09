@@ -1,0 +1,11 @@
+== Module 5: Copilot and Workspaces
+
+The `@workspace` scope is for creating new projects and managing existing projects. The following demonstrations will help you understand how to use the `@workspace` scope. We explored the `@vscode` and `@terminal` scopes module 3. The `@workspace` scope is the primary scope for interacting with source code and Copilot Chat. Only the code in open editor windows is available to Copilot when working with existing code. Copilot does not have access to the file system except for creating a new project with the `@workspace /new` command. Copilot does not have access to your entire solution or other code repositories when making suggestions via Copilot.
+
+include::01_cpp/01_cpp-workspace-new-prompt.adoc[]
+
+include::01_cpp/02_cpp-workspace-prompts.adoc[]
+
+include::02_java/01_java-workspace-new-prompt.adoc[]
+
+include::03_python/01_python-workspace-new-prompt.adoc[]
