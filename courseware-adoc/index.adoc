@@ -1,5 +1,6 @@
 = GitHub Copilot for Programmers
 Eric W. Greene <eric@training4programmers.com> 
+:doctype: book
 :description: GitHub Copilot for Programmers Courseware
 :toc: left
 :toc-title: Table of Contents

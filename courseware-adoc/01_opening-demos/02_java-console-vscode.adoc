@@ -1,0 +1,26 @@
+=== Demo: Java Console App in VS Code
+
+This is a demo to show how to use GitHub Copilot to help you write a new Java program. These are suggested prompts to use with GitHub Copilot. Feel free modify them or add additional prompts to get the desired results.
+
+. Create a Java Hello World Program
+
+[source,text]
+Hello, I am new to Java. I am working on a new Java Hello World program. How do I create a simple Java program file, and then compile and run the program?
+
+[start=2]
+. Learn about Build Tools for Java Project
+
+[source,text]
+Does Java support any build configuration tools such as CMake for C++ or Conda for Python?
+
+[start=3]
+. Configure the Project to Use Maven
+
+[source,text]
+How do I configure my project to use Maven?
+
+[start=4]
+. How to Run a Project with Maven
+
+[source,text]
+How do I run the project with Maven?
