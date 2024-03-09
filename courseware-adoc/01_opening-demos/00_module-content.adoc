@@ -1,4 +1,4 @@
-== Module 1: Official GitHub Copilot Extension/Plugin Links
+== Module 1: Copilot Extension
 
 GitHub Copilot is a web-based service that requires a GitHub account and active license via subscription. Your GitHub administrator assigns licenses. In addition to the subscription, you must install the GitHub Copilot extension(s) in your IDE.
 
@@ -10,12 +10,5 @@ Some editors require two extensions: one for the Copilot suggestions and one for
 
 - https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot[Getting Started with Copilot Editor Extensions,window=_blank]
 - https://docs.github.com/en/copilot/github-copilot-chat/using-github-copilot-chat-in-your-ide[Getting Started with Copilot Chat Editor Extensions,window=_blank]
-
-=== Explore GitHub Copilot Demos
-
-  - [C++ Console App with Visual Studio Code](./01_opening-demo/01_cpp-console-vscode.md)
-  - [Java Console App with Visual Studio Code](./01_opening-demo/02_java-console-vscode.md)
-  - [Python Console App with Visual Studio Code](./01_opening-demo/03_python-console-vscode.md)
-  - [Java Spring Boot REST API with IntelliJ IDEA](./01_opening-demo/04_java-spring-boot-intellij.adoc)
 
 include::04_java-spring-boot-intellij.adoc[]
