@@ -21,6 +21,12 @@ include::04_x-shot-prompts/00_module-content.adoc[]
 
 include::05_workspace/00_module-content.adoc[]
 
+include::06_discuss-code/00_module-content.adoc[]
+
+include::07_fix-code/00_module-content.adoc[]
+
+include::08_workshops/00_module-content.adoc[]
+
 == Conclusion
 
 Thank you for attending the course! If you have any questions, please get in touch with https://www.linkedin.com/in/ericwgreene[Eric Green,window=_blank]. We hope you enjoyed the course and learned a lot about GitHub Copilot.

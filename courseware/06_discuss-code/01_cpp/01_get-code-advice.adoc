@@ -1,0 +1,149 @@
+=== C++: Advice on Getters/Setters
+
+To run the following code, please create a "Hello World" style C++ project 
+using Visual Studio or JetBrain's CLion. You may use whatever project and 
+build tools you would like.
+
+. Open the C++ file with the `main` function. Replace the code in the file, 
+   with this code.
+
+[source,cpp]
+----
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Person {
+  private:
+    string name;
+    int age;
+  public:
+    Person(string name, int age) {
+      this->name = name;
+      this->age = age;
+    }
+    string getName() {
+      return name;
+    }
+    int getAge() {
+      return age;
+    }
+    void setName(string name) {
+      this->name = name;
+    }
+    void setAge(int age) {
+      this->age = age;
+    }
+    string print() {
+      return "Name: " + name + ", Age: " + to_string(age);
+    }
+};
+
+int main() {
+  Person person1("John", 30);
+  cout << person1.print() << endl;
+  return 0;
+}
+----
+
+Compile and run the code, it should work.
+
+[start=2]
+. Highlight the end `Person` class. Open the Copilot chat window. Send Copilot Chat the following prompt.
+
+[source,text]
+@workspace /fix is using getters and setters a good coding style?
+
+[start=3]
+. Copilot Chat can be used to get general feedback on our code. It will offer its opinion on how the code is implemented including coding styles as well as suggest improvements.
+
+*For example, a probable response from Copilot Chat would be:*
+
+The use of getters and setters (also known as accessors and mutators) is a common practice in object-oriented programming. They provide a way to control how a class's fields are accessed and modified, which can help to maintain the integrity of the data.
+
+However, whether or not to use getters and setters can depend on the specific situation. If a field should not be directly accessible or modifiable, then using getters and setters is a good idea. On the other hand, if a field should be freely accessible and modifiable, then getters and setters may not be necessary.
+
+In your `Person` class, the use of getters and setters seems appropriate. The fields `name` and `age` are private, so they can't be accessed or modified directly from outside the class. The getters and setters provide controlled access to these fields.
+
+Here's your code with a minor improvement. I've added `const` to the getters to indicate that they don't modify the object:
+
+[source,cpp]
+----
+class Person {
+private:
+    std::string name;
+    int age;
+public:
+    Person(std::string name, int age) : name(name), age(age) {}
+
+    std::string getName() const {
+        return name;
+    }
+
+    int getAge() const {
+        return age;
+    }
+
+    void setName(std::string name) {
+        this->name = name;
+    }
+
+    void setAge(int age) {
+        this->age = age;
+    }
+
+    std::string print() const {
+        return "Name: " + name + ", Age: " + std::to_string(age);
+    }
+};
+----
+
+In this version, I've also used the constructor initializer list to initialize `name` and `age`, which is a more idiomatic way to initialize fields in C++.
+
+[start=4]
+. If the suggested improvements make sense, update your code. The final solution should look similar to this.
+
+[source,cpp]
+----
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+public:
+    Person(string name, int age) : name(name), age(age) {}
+
+    string getName() const {
+        return name;
+    }
+
+    int getAge() const {
+        return age;
+    }
+
+    void setName(string name) {
+        this->name = name;
+    }
+
+    void setAge(int age) {
+        this->age = age;
+    }
+
+    string print() const {
+        return "Name: " + name + ", Age: " + to_string(age);
+    }
+};
+
+int main() {
+  Person person1("John", 30);
+  cout << person1.print() << endl;
+  return 0;
+}
+----
+
+Compile and run the code. It should work.

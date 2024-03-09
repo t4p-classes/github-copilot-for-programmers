@@ -1,0 +1,7 @@
+== Module 8: Workshops
+
+Following the training session, we encourage you to explore the workshops below to deepen your skills with GitHub Copilot. These language-specific workshops will help you understand how to use Copilot in a real-world scenario. 
+
+- C++
+  - [New C++ App](./07_workshops/01_cpp/01_new-app/README.md)
+  - [C++ Unit Tests](./07_workshops/01_cpp/02_unit-tests/README.md)
