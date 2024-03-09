@@ -1,4 +1,4 @@
-== Module 2: Copilot Suggestions and Visual Studio Code
+== Module 2: Copilot Suggestions
 
 While Copilot is supported by many editors, the most popular editor is Visual Studio Code. The following notes will help you start with GitHub Copilot in Visual Studio Code. Below are some notes on how to use Copilot in Visual Studio Code. If using another editor, refer to the official instructions at the links above.
 
@@ -8,7 +8,7 @@ While Copilot is supported by many editors, the most popular editor is Visual St
   - If you like the suggestion, hit `<TAB>` on the keyboard to accept.
   - If the suggestion is unacceptable and you want to type something else, type `<ESC>` on the keyboard to decline the suggestion. Then, you may continue typing.
   - If no suggestion appears, or the suggestion disappears, and you want it back, then hit `<ALT> + \` on the keyboard; if there is a suggestion, it will appear.
-  - When there are multiple suggestions, to view them, type `<ALT>+]` or `<ALT>+[` to cycle left and right through them. Also, you can hover over the suggestion with your mouse cursor to see more.
+  - When there are multiple suggestions, to view them, type `<ALT> + ]` or `<ALT> + [` to cycle left and right through them. Also, you can hover over the suggestion with your mouse cursor to see more.
   - To view multiple suggestions in a new editor tab, type `<CTRL> + <ENTER>` to open a new tab and review the generated suggestions.
 
 === Useful Copilot Chat Techniques for Visual Studio Code
@@ -31,3 +31,5 @@ A deterministic program is one where, for a given input, the program's output an
 On the other hand, a non-deterministic program is one where the program's output or state can change even with the same input. The varying output could be due to random number generation, system time, concurrent execution, or external system interactions.
 
 As for GitHub Copilot, OpenAI Codex powers Copilot; OpenAI Codex is a model trained on various public sources, including code repositories. GitHub Copilot provides non-deterministic suggestions. While GitHub designed Copilot to provide relevant code suggestions based on the context of your code, the exact suggestions can vary even in similar contexts. The variation is due to the underlying machine learning model, which has a degree of randomness in its outputs.
+
+include::01_cpp-suggestions.adoc[]

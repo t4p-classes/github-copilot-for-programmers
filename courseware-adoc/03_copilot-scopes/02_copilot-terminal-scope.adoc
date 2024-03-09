@@ -1,0 +1,6 @@
+=== Terminal Copilot Chat
+
+- Delete a Folder and Its Contents
+
+[source,text]
+@terminal How do I delete a folder and all its contents?

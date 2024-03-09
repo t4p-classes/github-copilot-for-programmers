@@ -1,0 +1,16 @@
+=== VS Code Copilot Prompts
+
+- Configure Tabs, Spaces, and Forced Indenting
+
+[source,text]
+@vscode how do I set the tab size and ensure spaces are used instead of tabs? also, how do I force this on every file?
+
+- Disable Copilot for Markdown Files
+
+[source,text]
+@vscode how do I disable copilot for markdown files?
+
+- Which Extensions to Configure CMake Files?
+
+[source,text]
+@vscode which extension do I use to configure cmake files?

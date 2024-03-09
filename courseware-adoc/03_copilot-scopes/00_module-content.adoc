@@ -1,0 +1,10 @@
+== Module 3: VS Code Copilot Scopes
+
+Visual Studio Code Copilot has three scopes: `@workspace`, `@vscode`, and `@terminal`. Each scope has its own set of commands and prompts. The following notes will help you understand how to use each scope. In this module, we will explore the `@vscode` and `@terminal` scopes. We explore the `@workspace` scope in module 5.
+
+include::01_copilot-vscode-scope.adoc[]
+
+include::02_copilot-terminal-scope.adoc[]
+
+include::03_copilot-terminal-scope-containerization.adoc[]
+
