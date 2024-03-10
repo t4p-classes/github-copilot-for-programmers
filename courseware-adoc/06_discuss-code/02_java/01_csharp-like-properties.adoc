@@ -1,78 +1,81 @@
-# Improve Java Code with GitHub Copilot
+=== Java: Equivalent of C# Like Properties
 
-## Java Equivalent of C# Like Properties
-
-[Does Java Support C# styles Class Properties?](https://stackoverflow.com/questions/2701077/does-java-have-properties-that-work-the-same-way-properties-work-in-c)
+https://stackoverflow.com/questions/2701077/does-java-have-properties-that-work-the-same-way-properties-work-in-c[Does Java Support C# styles Class Properties?]
 
 To run the following code, please create a "Hello World" style Java project 
 using Visual Studio or JetBrain's IntelliJ.
 
-1. Open the Java file with the `main` function. Update the code in the `Main` class 
+. Open the Java file with the `main` function. Update the code in the `Main` class 
    with this code.
 
-    ```java
-    class Person {
-        private String Name { get; set; };
-        private int Age { get; set; };
+[%linenums,java]
+----
+class Person {
+    private String Name { get; set; };
+    private int Age { get; set; };
 
-        public Person(String name, int age) {
-            Name = name;
-            Age = age;
-        }
+    public Person(String name, int age) {
+        Name = name;
+        Age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Person person = new Person("John", 25);
+
+        System.out.println(person.Name);
+        System.out.println(person.Age);
+    }
+}
+----
+
+The code should fail to compile. Why? Well the code is attempting to use C# style properties in Java. Java does not support C# style properties. Instead, Java uses getter and setter methods to access and modify class properties. Can Copilot detect the bug, and offer a fix?
+
+[start=2]
+. Highlight the code in the `main` function, right click, mouse over Copilot, and ask Copilot to fix the code in the context menu.
+
+[source,text]
+/fix I am a C# developer using Java. I know C# and Java are similar. So I have tried to use C# class properties but this does not appear to work in Java. What is the correct alternative in Java that accomplishes the same goal?
+
+
+[start=3]
+. Copilot should offer a fix similar to this:
+
+[source,java]
+----
+class Person {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
     }
 
-    public class Main {
-        public static void main(String[] args) {
-
-            Person person = new Person("John", 25);
-
-            System.out.println(person.Name);
-            System.out.println(person.Age);
-        }
-    }
-    ```
-
-    The code should fail to compile. Why? Well the code is attempting to use C# style properties in Java. Java does not support C# style properties. Instead, Java uses getter and setter methods to access and modify class properties. Can Copilot detect the bug, and offer a fix?
-
-2. Highlight the code in the `main` function, right click, mouse over Copilot, and ask Copilot to fix the code in the context menu.
-
-    ```text
-    /fix I am a C# developer using Java. I know C# and Java are similar. So I have tried to use C# class properties but this does not appear to work in Java. What is the correct alternative in Java that accomplishes the same goal?
-    ```
-
-3. Copilot should offer a fix similar to this:
-
-    ```java
-    class Person {
-        private String name;
-        private int age;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public void setAge(int age) {
-            this.age = age;
-        }
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public class Main {
-        public static void main(String[] args) {
-            Person person = new Person();
-            person.setName("John");
-            person.setAge(25);
-            System.out.println(person.getName());
-            System.out.println(person.getAge());
-        }
+    public int getAge() {
+        return age;
     }
-    ```
 
-4. Accept the fix and run the code. The code should run without errors.
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.setName("John");
+        person.setAge(25);
+        System.out.println(person.getName());
+        System.out.println(person.getAge());
+    }
+}
+----
+
+[start=4]
+. Accept the fix and run the code. The code should run without errors.
