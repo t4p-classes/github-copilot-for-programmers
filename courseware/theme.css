@@ -1419,10 +1419,10 @@ td > div.verse {
   white-space: pre;
 }
 ol {
-  margin-left: 1.75em;
+  margin-left: 2rem;
 }
 ul li ol {
-  margin-left: 1.5em;
+  margin-left: 2em;
 }
 dl dd {
   margin-left: 1.125em;
@@ -1992,4 +1992,48 @@ p.tableblock {
 
 .indent-4 {
   padding-left: 4rem;
+}
+
+.listingblock, .paragraph {
+  padding-left: 1em;
+}
+
+code table tr td, .linenodiv > pre {
+  padding: 0;
+}
+
+.linenos, .linenodiv {
+  margin: 0;
+  padding: 0;
+}
+
+.lineno, .linenotable {
+  border: 0;
+}
+
+pre.pygments.highlight {
+  border: 0;
+  padding: 0;
+}
+
+pre.pygments .lineno {
+  border: 0;
+}
+
+.listingblock pre:not(.highlight), pre.pygments, .linenotable {
+  background-color: #f0f0f0 !important;
+
+}
+
+code table {
+  margin-bottom: 0;
+}
+
+pre.pygments.highlight {
+  padding: 1rem;
+  padding-top: 1.2rem;
+}
+
+.listingblock pre, .listingblock pre[class] {
+  font-size: 0.95rem;
 }

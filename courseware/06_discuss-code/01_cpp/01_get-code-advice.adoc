@@ -7,7 +7,7 @@ build tools you would like.
 . Open the C++ file with the `main` function. Replace the code in the file, 
    with this code.
 
-[source,cpp,.indent-4]
+[%linenums,cpp]
 ----
 #include <iostream>
 #include <string>
@@ -70,7 +70,7 @@ In your `Person` class, the use of getters and setters seems appropriate. The fi
 
 Here's your code with a minor improvement. I've added `const` to the getters to indicate that they don't modify the object:
 
-[source,cpp]
+[%linenums,cpp]
 ----
 class Person {
 private:
@@ -106,7 +106,7 @@ In this version, I've also used the constructor initializer list to initialize `
 [start=4]
 . If the suggested improvements make sense, update your code. The final solution should look similar to this.
 
-[source,cpp]
+[%linenums,cpp]
 ----
 #include <iostream>
 #include <string>
