@@ -18,3 +18,11 @@ include::01_cpp/07_improper-use-pointers-and-references.adoc[]
 
 include::01_cpp/08_memory-allocation-failures.adoc[]
 
+include::02_java/01_incorrect-string-concat.adoc[]
+
+include::02_java/02_equality-confusion.adoc[]
+
+include::03_python/01_convert-int-string.adoc[]
+
+include::03_python/02_key-error.adoc[]
+
