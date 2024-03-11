@@ -1,503 +1,508 @@
-# Build a Calculator with C++ and Copilot
+=== Build a Calculator with C++
 
-## Setup
+==== Setup
 
 This tutorial requires Microsoft Windows with Visual Studio Community Edition
-and MinGW installed. MinGW can be downloaded
-from [Winlibs](https://winlibs.com/). It is recommended to download the latest
-UCRT version for your platform, x86 or x64. Finally, extract the archive, and
-configure your `PATH` to include the `bin` folder of the extracted archive.
+and MinGW installed. MinGW can be downloaded from https://winlibs.com/[Winlibs]. It is recommended to download the latest UCRT version for your platform, x86 or x64. Finally, extract the archive, and configure your `PATH` to include the `bin` folder of the extracted archive.
 
-## Steps for Part 1
+==== Steps for Part 1
 
-1. Create a new folder named `calculator-cpp`. Open the folder with VS Code.
+. Create a new folder named `calculator-cpp`. Open the folder with VS Code.
 
-2. Ask Copilot how to create a new C++ main file.
+[start=2]
+. Ask Copilot how to create a new C++ main file.
 
-    **Copilot Chat Prompt:**
-    ```text
-    I am working on a new C++ project. Please generate a main file that prints hello world to the console.
-    ```
+*Copilot Chat Prompt:*
 
-    **Probable Partial Response:**
-    ```c++
-    #include <iostream>
-    
-    int main() {
-        std::cout << "Hello, World!" << std::endl;
-        return 0;
-    }
-    ```
+[source,text]
+I am working on a new C++ project. Please generate a main file that prints hello world to the console.
 
-3. Ask Copilot how to build and run the program.
+*Probable Partial Response:*
 
-    **Copilot Chat Prompt:**
-    ```text
-    How can I compile and run the C++ program you provided? The name of the executable file must be calculator.exe.
-    ```
+[%linenums,cpp]
+----
+#include <iostream>
 
-    **Probable Partial Response:**
-    ```bash
-    g++ main.cpp -o calculator.exe
-    ```
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+----
 
-3. Open a terminal, and run the following command.
+[start=3]
+. Ask Copilot how to build and run the program.
 
-    ```bash
-    g++ main.cpp -o calculator.exe
-    ```
+*Copilot Chat Prompt:*
 
-   Then, run the program.
+[source,text]
+How can I compile and run the C++ program you provided? The name of the executable file must be calculator.exe.
 
-    ```bash
-    calculator.exe
-    ```
+*Probable Partial Response:*
 
-4. Ask Copilot to generate a CMake configuration.
+[source,bash]
+g++ main.cpp -o calculator.exe
 
-    **Copilot Chat Prompt:**
-    ```text
-    Generate a new CMake configuration file for my project named CalculatorCpp. Use cmake version 3.27 and C++ version 23.
-    ```
+- Open a terminal, and run the following command.
 
-    **Probable Partial Response:**
-    ```cmake
-    cmake_minimum_required(VERSION 3.27)  # CMake 3.27 or later is required
+[source,bash]
+g++ main.cpp -o calculator.exe
 
-    # set the project name
-    project(CalculatorCpp)
+Then, run the program.
 
-    # specify the C++ standard
-    set(CMAKE_CXX_STANDARD 23)
+[source,bash]
+calculator.exe
 
-    # add the executable
-    add_executable(CalculatorCpp main.cpp)
-    ```
+[start=4]
+. Ask Copilot to generate a CMake configuration.
 
-5. In the project's root folder, create a new file named `CMakeLists.txt` and
-   add the following content to the file.
+*Copilot Chat Prompt:*
 
-    ```cmake
-    cmake_minimum_required(VERSION 3.27)  # CMake 3.27 or later is required
+[source,text]
+Generate a new CMake configuration file for my project named CalculatorCpp. Use cmake version 3.27 and C++ version 23.
 
-    # set the project name
-    project(CalculatorCpp)
+*Probable Partial Response:*
 
-    # specify the C++ standard
-    set(CMAKE_CXX_STANDARD 23)
+[%linenums,cmake]
+----
+cmake_minimum_required(VERSION 3.27)  # CMake 3.27 or later is required
 
-    # add the executable
-    add_executable(CalculatorCpp main.cpp)
-    ```
+# set the project name
+project(CalculatorCpp)
 
-6. Ask Copilot how to build the project with cmake.
+# specify the C++ standard
+set(CMAKE_CXX_STANDARD 23)
 
-    **Copilot Chat Prompt:**
-    ```text
-    How do I build the project with CMake?
-    ```
-    **Probable Partial Response:**
-    ```bash
-    mkdir build
-    cd build
-    
-    cmake ..
-    
-    make
-    ```
+# add the executable
+add_executable(CalculatorCpp main.cpp)
+----
 
-7. Run the following commands. The `make` command will fail. Instead,
-   run `mingw2-make`. It will fail too, because there is no `Makefile.`
+[start=5]
+. In the project's root folder, create a new file named `CMakeLists.txt` and add the following content to the file.
 
-    ```bash
-    mkdir build
-    cd build
-    
-    cmake ..
-    
-    make
-    
-    mingw2-make
-    ```
+[%linenums,cmake]
+----
+cmake_minimum_required(VERSION 3.27)  # CMake 3.27 or later is required
 
-8. Ask GitHub Copilot how to build on Windows when there is no `Makefile` but
-   there is a Visual Studio Solution file.
+# set the project name
+project(CalculatorCpp)
 
-    **Copilot Chat Prompt:**
-    ```text
-    When running make, I receive an error saying there is no make target, but there is a Visual Studio Solution file. How do I use the CMmake command to execute a build the Visual Studio Solution?
-    ```
+# specify the C++ standard
+set(CMAKE_CXX_STANDARD 23)
 
-    **Probable Partial Response:**
-    ```bash
-    cmake --build .
-    ```
+# add the executable
+add_executable(CalculatorCpp main.cpp)
+----
 
-9. Run the following CMake build command, then run the executable.
+[start=6]
+. Ask Copilot how to build the project with cmake.
 
-    ```bash
-    cmake --build .
-    
-    Debug\CalculatorCpp.exe
-    ```
+*Copilot Chat Prompt:*
 
-10. Create a new local git repository.
+[source,test]
+How do I build the project with CMake?
 
-    ```bash
-    git init
-    ```
+*Probable Partial Response:*
 
-11. Ask GitHub Copilot how to create a `.gitignore` file for a C++ project.
+[%linenums,bash]
+----
+mkdir build
+cd build
 
-    **Copilot Chat Prompt:**
-    ```text
-    Generate a Git ignore file for my C++ and CMake project.
-    ```
+cmake ..
 
-    **Probable Partial Response:**
-    ```text
-    The contents of a Git ignore file.
-    ```
+make
+----
 
-12. Create a new `.gitignore` file, and add the contents suggested by the
-    previous response.
+[start=7]
+. Run the following commands. The `make` command will fail. Instead, run `mingw2-make`. It will fail too, because there is no `Makefile.`
 
-13. Add the untracked file, create a commit, and push to a remote.
+[%linenums,bash]
+----
+mkdir build
+cd build
 
-    ```bash
-    git add -A
-    
-    git commit -m "initial commit"
-    
-    git remote add origin <SOME REMOTE>
-    
-    git push
-    ```
+cmake ..
 
-# Build a Calculator with C++ and Copilot
+make
 
-## Setup
+mingw2-make
+----
 
-This tutorial builds on the previous tutorial. Complete the previous tutorial
-before starting this one. Be sure to open the project in the Visual Studio Code
-or JetBrains CLion.
+[start=8]
+. Ask GitHub Copilot how to build on Windows when there is no `Makefile` but there is a Visual Studio Solution file.
 
-## Steps for Part 2
+*Copilot Chat Prompt:*
 
-1. Open the file `main.cpp` in the editor. Then, open the Copilot chat window.
+[source,text]
+When running make, I receive an error saying there is no make target, but there is a Visual Studio Solution file. How do I use the CMmake command to execute a build the Visual Studio Solution?
 
-2. Ask Copilot to how to initialize a result variable to 0 and display the 
-   result on the screen.
+*Probable Partial Response:*
 
-    **Copilot Chat Prompt:**
-    ```text
-    How do I initialize a result variable to 0 and display the result on the screen?
-    ```
+[source,bash]
+cmake --build .
 
-    **Probable Partial Response:**
-    ```c++
-    #include <iostream>
-    
-    int main() {
-        int result = 0;
-        std::cout << "The result is: " << result << std::endl;
-        return 0;
-    }
-    ```
+[start=9]
+. Run the following CMake build command, then run the executable.
 
-3. Update the `main` function with the following code:
+[%linenums,bash]
+----
+cmake --build .
 
-    ```c++
-    int main() {
-    
-      int result = 0;
-    
-      std::cout << "The result is: " << result << std::endl;
-      return 0;
-    }
-    ```
+Debug\CalculatorCpp.exe
+----
 
-    Run the project, and verify it works.
+[start=10]
+. Create a new local git repository.
 
-4. Ask Copilot to how to read numeric input from the user and add the entered 
-   number to the result.
+[source,bash]
+git init
 
-    **Copilot Chat Prompt:**
-    ```text
-    How does the program accept user input from the console? I would like to have 
-    the user enter a number, then add the number to the result.
-    ```
-    
-    **Probable Partial Response:**
-    ```c++
-    #include <iostream>
-    
-    int main() {
-        int result = 0;
-        int input;
-    
+[start=11]
+. Ask GitHub Copilot how to create a `.gitignore` file for a C++ project.
+
+*Copilot Chat Prompt:*
+
+[source,text]
+Generate a Git ignore file for my C++ and CMake project.
+
+*Probable Partial Response:*
+
+[source,text]
+The contents of a Git ignore file.
+
+[start=12]
+. Create a new `.gitignore` file, and add the contents suggested by the previous response.
+
+[start=13]
+. Add the untracked file, create a commit, and push to a remote.
+
+[%linenums,bash]
+----
+git add -A
+
+git commit -m "initial commit"
+
+git remote add origin <SOME REMOTE>
+
+git push
+----
+
+[start=14]
+. Open the file `main.cpp` in the editor. Then, open the Copilot chat window.
+
+[start=15]
+. Ask Copilot to how to initialize a result variable to 0 and display the result on the screen.
+
+*Copilot Chat Prompt:*
+
+[source,text]
+How do I initialize a result variable to 0 and display the result on the screen?
+
+*Probable Partial Response:*
+
+[%linenums,cpp]
+----
+#include <iostream>
+
+int main() {
+    int result = 0;
+    std::cout << "The result is: " << result << std::endl;
+    return 0;
+}
+----
+
+[start=16]
+. Update the `main` function with the following code:
+
+[%linenums,cpp]
+----
+int main() {
+
+  int result = 0;
+
+  std::cout << "The result is: " << result << std::endl;
+  return 0;
+}
+----
+
+Run the project, and verify it works.
+
+[start=17]
+Ask Copilot to how to read numeric input from the user and add the entered number to the result.
+
+*Copilot Chat Prompt:*
+
+[source,text]
+How does the program accept user input from the console? I would like to have 
+the user enter a number, then add the number to the result.
+
+*Probable Partial Response:*
+
+[%linenums,cpp]
+----
+#include <iostream>
+
+int main() {
+    int result = 0;
+    int input;
+
+    std::cout << "Enter a number: ";
+    std::cin >> input;
+
+    result += input;
+
+    std::cout << "The result is: " << result << std::endl;
+    return 0;
+}
+----
+
+[start=18]
+. Update the `main` function to use the following code:
+
+[%linenums,cpp]
+----
+#include <iostream>
+
+int main() {
+    int result = 0;
+    int input;
+
+    std::cout << "Enter a number: ";
+    std::cin >> input;
+
+    result += input;
+
+    std::cout << "The result is: " << result << std::endl;
+    return 0;
+}
+----
+
+Compile and run the code. It should work as expected.
+
+[start=19]
+. Ask Copilot to add a loop so the user can enter multiple numbers and continue to add to the result.
+
+*Copilot Chat Prompt:*
+
+[source,text]
+How do I implement a loop so that users can add many numbers to the result?
+
+*Probable Partial Response:*
+
+To implement a loop that allows users to add multiple numbers to the result, you can use a `while` loop. Here's the step-by-step plan:
+
+- Initialize a `char` variable to store the user's choice to continue or not.
+- Start a `do-while` loop. This type of loop will execute the code block at least once before checking the condition.
+- Inside the loop, prompt the user to enter a number.
+- Read the user's input and add it to the result.
+- Display the updated result.
+- Ask the user if they want to enter another number.
+- Read the user's choice.
+- The loop will continue as long as the user enters 'y' or 'Y'.
+
+Here's the code:
+
+[%linenums,cpp]
+----
+#include <iostream>
+
+int main() {
+    int result = 0;
+    int input;
+    char choice;
+
+    do {
         std::cout << "Enter a number: ";
         std::cin >> input;
-    
+
         result += input;
-    
+
         std::cout << "The result is: " << result << std::endl;
-        return 0;
-    }
-    ```
 
-5. Update the `main` function to use the following code:
-
-    ```c++
-    #include <iostream>
-    
-    int main() {
-        int result = 0;
-        int input;
-    
-        std::cout << "Enter a number: ";
-        std::cin >> input;
-    
-        result += input;
-    
-        std::cout << "The result is: " << result << std::endl;
-        return 0;
-    }
-    ```
-
-    Compile and run the code. It should work as expected.
-
-6. Ask Copilot to add a loop so the user can enter multiple numbers and 
-   continue to add to the result.
-
-    **Copilot Chat Prompt:**
-    ```text
-    How do I implement a loop so that users can add many numbers to the result?
-    ```
-    
-    **Probable Partial Response:**
-    ```text
-    To implement a loop that allows users to add multiple numbers to the result, you can use a `while` loop. Here's the step-by-step plan:
-    
-    1. Initialize a `char` variable to store the user's choice to continue or not.
-    2. Start a `do-while` loop. This type of loop will execute the code block at least once before checking the condition.
-    3. Inside the loop, prompt the user to enter a number.
-    4. Read the user's input and add it to the result.
-    5. Display the updated result.
-    6. Ask the user if they want to enter another number.
-    7. Read the user's choice.
-    8. The loop will continue as long as the user enters 'y' or 'Y'.
-    
-    Here's the code:
-    
-    #include <iostream>
-    
-    int main() {
-        int result = 0;
-        int input;
-        char choice;
-    
-        do {
-            std::cout << "Enter a number: ";
-            std::cin >> input;
-    
-            result += input;
-    
-            std::cout << "The result is: " << result << std::endl;
-    
-            std::cout << "Do you want to enter another number? (y/n): ";
-            std::cin >> choice;
-        } while(choice == 'y' || choice == 'Y');
-    
-        return 0;
-    }
-    
-    This code will keep asking the user to enter a number and add it to the result until the user decides to stop by entering anything other than 'y' or 'Y'.
-    ```
-
-7. Using the last Copilot response, update your code, and run the program. Does 
-   it work? If it works, then great! If not, continue to step 8 and compare 
-   your code to the reference code.
-
-8. Compare your code updates in the previous step to the code below. If your 
-   code does not work, please update accordingly.
-
-    ```cpp
-    #include <iostream>
-    
-    int main() {
-    
-      int result = 0;
-      int input;
-      char choice;
-    
-      do {
-    
-        std::cout << "Enter a number: ";
-        std::cin >> input;
-    
-        result += input;
-    
-        std::cout << "The result is: " << result << std::endl;
-    
         std::cout << "Do you want to enter another number? (y/n): ";
         std::cin >> choice;
-    
-      } while (choice == 'y' || choice == 'Y');
-      
-      return 0;
+    } while(choice == 'y' || choice == 'Y');
+
+    return 0;
+}
+----
+
+This code will keep asking the user to enter a number and add it to the result until the user decides to stop by entering anything other than 'y' or 'Y'.
+
+[start=20]
+. Using the last Copilot response, update your code, and run the program. Does it work? If it works, then great! If not, continue to step 8 and compare your code to the reference code.
+
+[start=21]
+. Compare your code updates in the previous step to the code below. If your code does not work, please update accordingly.
+
+[%linenums,cpp]
+----
+#include <iostream>
+
+int main() {
+
+  int result = 0;
+  int input;
+  char choice;
+
+  do {
+
+    std::cout << "Enter a number: ";
+    std::cin >> input;
+
+    result += input;
+
+    std::cout << "The result is: " << result << std::endl;
+
+    std::cout << "Do you want to enter another number? (y/n): ";
+    std::cin >> choice;
+
+  } while (choice == 'y' || choice == 'Y');
+  
+  return 0;
+}
+----
+
+[start=22]
+. Ask the Copilot chat how to support multiple math operations.
+
+*Copilot Chat Prompt:*
+
+[source,text]
+How do I update the program to support add, subtract, multiply, and divide? 
+The user must choose a math operation on each iteration of the command loop.
+
+*Probable Partial Response:*
+
+[%linenums,cpp]
+----
+#include <iostream>
+
+int main() {
+    int result = 0;
+    int input;
+    char choice;
+    char operation;
+
+    do {
+        std::cout << "Enter a number: ";
+        std::cin >> input;
+
+        std::cout << "Choose an operation (+, -, *, /): ";
+        std::cin >> operation;
+
+        switch (operation) {
+            case '+':
+                result += input;
+                break;
+            case '-':
+                result -= input;
+                break;
+            case '*':
+                result *= input;
+                break;
+            case '/':
+                if (input != 0) {
+                    result /= input;
+                } else {
+                    std::cout << "Error: Division by zero is not allowed.\n";
+                }
+                break;
+            default:
+                std::cout << "Error: Invalid operation. Please choose +, -, *, or /.\n";
+                continue; // Skip the rest of the loop for this iteration
+        }
+
+        std::cout << "The result is: " << result << std::endl;
+
+        std::cout << "Do you want to enter another number? (y/n): ";
+        std::cin >> choice;
+    } while (choice == 'y' || choice == 'Y');
+
+    return 0;
+}
+----
+
+Using the response from Copilot, please update your code.
+
+[start=23]
+. Compare you code to the reference code below. Make any needed adjustments. Your code does not have to match this code exactly. Simply use the code to ensure similar functionality and to resolve any bugs you may have.
+
+[%linenums,cpp]
+----
+#include <iostream>
+
+int main() {
+
+  int result = 0;
+  int input;
+  char choice;
+  char operation;
+
+  do {
+
+    std::cout << "Enter a number: ";
+    std::cin >> input;
+
+    std::cout << "Choose an operation (+, -, *, /): ";
+    std::cin >> operation;
+
+    switch (operation) {
+      case '+':
+        result += input;
+        break;
+      case '-':
+        result -= input;
+        break;
+      case '*':
+        result *= input;
+        break;
+      case '/':
+        // -- used the comment below to encourage Copilot suggestion --
+        // Check for division by zero
+        if (input == 0) {
+          std::cout << "Division by zero is not allowed." << std::endl;
+        } else {
+          result /= input;
+        }
+        break;
+      default:
+        // -- used the comment below to encourage Copilot suggestion --
+        // show an invalid operation message that includes a list of valid
+        // operations
+        std::cout << "Error: Invalid operation. Please choose +, -, *, /." <<
+        std::endl;
+        continue;
     }
-    ```
 
-9. Ask the Copilot chat how to support multiple math operations.
+    std::cout << "The result is: " << result << std::endl;
 
-    **Copilot Chat Prompt:**
-    ```text
-    How do I update the program to support add, subtract, multiply, and divide? 
-    The user must choose a math operation on each iteration of the command loop.
-    ```
-    
-    **Probable Partial Response:**
-    ```cpp
-    #include <iostream>
-    
-    int main() {
-        int result = 0;
-        int input;
-        char choice;
-        char operation;
-    
-        do {
-            std::cout << "Enter a number: ";
-            std::cin >> input;
-    
-            std::cout << "Choose an operation (+, -, *, /): ";
-            std::cin >> operation;
-    
-            switch (operation) {
-                case '+':
-                    result += input;
-                    break;
-                case '-':
-                    result -= input;
-                    break;
-                case '*':
-                    result *= input;
-                    break;
-                case '/':
-                    if (input != 0) {
-                        result /= input;
-                    } else {
-                        std::cout << "Error: Division by zero is not allowed.\n";
-                    }
-                    break;
-                default:
-                    std::cout << "Error: Invalid operation. Please choose +, -, *, or /.\n";
-                    continue; // Skip the rest of the loop for this iteration
-            }
-    
-            std::cout << "The result is: " << result << std::endl;
-    
-            std::cout << "Do you want to enter another number? (y/n): ";
-            std::cin >> choice;
-        } while (choice == 'y' || choice == 'Y');
-    
-        return 0;
-    }
-    ```
+    std::cout << "Do you want to enter another number? (y/n): ";
+    std::cin >> choice;
 
-    Using the response from Copilot, please update your code.
+  } while (choice == 'y' || choice == 'Y');
 
-   10. Compare you code to the reference code below. Make any needed 
-       adjustments. Your code does not have to match this code exactly. Simply 
-       use the code to ensure similar functionality and to resolve any bugs you 
-       may have.
+  return 0;
+}
+----
 
-       ```cpp
-       #include <iostream>
-    
-       int main() {
-    
-         int result = 0;
-         int input;
-         char choice;
-         char operation;
-    
-         do {
-    
-           std::cout << "Enter a number: ";
-           std::cin >> input;
-    
-           std::cout << "Choose an operation (+, -, *, /): ";
-           std::cin >> operation;
-    
-           switch (operation) {
-             case '+':
-               result += input;
-               break;
-             case '-':
-               result -= input;
-               break;
-             case '*':
-               result *= input;
-               break;
-             case '/':
-               // -- used the comment below to encourage Copilot suggestion --
-               // Check for division by zero
-               if (input == 0) {
-                 std::cout << "Division by zero is not allowed." << std::endl;
-               } else {
-                 result /= input;
-               }
-               break;
-             default:
-               // -- used the comment below to encourage Copilot suggestion --
-               // show an invalid operation message that includes a list of valid
-               // operations
-               std::cout << "Error: Invalid operation. Please choose +, -, *, /." <<
-               std::endl;
-               continue;
-           }
-    
-           std::cout << "The result is: " << result << std::endl;
-    
-           std::cout << "Do you want to enter another number? (y/n): ";
-           std::cin >> choice;
-    
-         } while (choice == 'y' || choice == 'Y');
-    
-         return 0;
-       }
-       ```
+[start=24]
+. For part, one final improvement is needed. The user input for the math operation command and the exit loop command need to be combined. Copilot can help us do this. Ask Copilot to refactor our logic to reduce the code to single user input for math operations and loop exit. For this step, try writing your own Copilot prompt and follow the suggestion offer by Copilot. A suggested prompt and solution is offered in the next step. 
 
-11. For part, one final improvement is needed. The user input for the math 
-    operation command and the exit loop command need to be combined. Copilot 
-    can help us do this. Ask Copilot to refactor our logic to reduce the 
-    code to single user input for math operations and loop exit.
+[start=25]
+The Copilot prompt and code below are the solution for the previous step.
 
-    For this step, try writing your own Copilot prompt and follow the 
-    suggestion offer by Copilot. A suggested prompt and solution is offered 
-    [Part 2 - Solution](./calculator-part-2-solution.md) file.
+*Copilot Chat Prompt:*
 
-
-### Build a Calculator with C++ and Copilot
-
-## Solution for Final Step of Part 2
-
-The Copilot prompt and code below are the solution to final step of part 2. 
-This solution is in a separate to give you the change to interact with 
-Copilot on your own, using your own prompt, and applying the solution as you 
-decide to.
-
-**Copilot Chat Prompt:**
-```text
+[source,text]
 Combine the user input for the math operation command and the exit loop command into a single input and update the appropriate control flow logic. The user input to capture the command/exit should be a different user input than capturing the number.
-```
 
-**Probable Partial Response:**
-```text
+*Probable Partial Response:*
+
 To achieve this, you can modify the program to first ask for the operation and then ask for the number. If the user enters 'q' or 'Q' as the operation, the program will quit. Otherwise, it will ask for a number and perform the chosen operation on the result and the user's input. Here's the updated code:
 
+[%linenums,cpp]
+----
 #include <iostream>
 
 int main() {
@@ -543,17 +548,16 @@ int main() {
 
     return 0;
 }
+----
 
 This code will first prompt the user to enter an operation. If the user enters 'q' or 'Q', the program will quit. Otherwise, it will prompt the user to enter a number and perform the chosen operation on the result and the user's input. If the user chooses division and enters zero as the number, the program will print an error message and ask for another operation and number.
-```
 
-## Tutorial Reference Solution for Part 2
+==== Workshop Reference Solution 
 
-The following code if the final reference solution for the tutorial. Please 
-compare your code to ensure similar functionality and that your code works 
-as expected.
+The following code if the final reference solution for the tutorial. Please compare your code to ensure similar functionality and that your code works as expected.
 
-```cpp
+[%linenums,cpp]
+----
 #include <iostream>
 
 int main() {
@@ -599,4 +603,4 @@ int main() {
 
     return 0;
 }
-```
+----
