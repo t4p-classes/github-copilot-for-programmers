@@ -5,9 +5,9 @@ Eric W. Greene <eric@training4programmers.com>
 :toc: left
 :toc-title: Table of Contents
 
-Welcome to the GitHub Copilot for Programmers training! The following content is the courseware for this course. The course delivery is 100% live coding. Students are encouraged to code with the instructor if they have Copilot ready in Visual Studio Code and optionally in other editors.
-
 == Welcome!
+
+Welcome to the GitHub Copilot for Programmers training! The following content is the courseware for this course. The course delivery is 100% live coding. Students are encouraged to code with the instructor if they have Copilot ready in Visual Studio Code and optionally in other editors.
 
 Below are the course modules and resource links used in the course. We will not use every demo and resource in your training session, but you are encouraged to explore all the resources following class to continue learning.
 
