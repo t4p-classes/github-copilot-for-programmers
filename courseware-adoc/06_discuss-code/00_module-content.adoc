@@ -4,5 +4,7 @@ We designed the following demonstrations to help you improve your code using Git
 
 
 include::01_cpp/01_get-code-advice.adoc[]
+
 include::02_java/01_csharp-like-properties.adoc[]
 
+include::03_python/01_inefficient-loop.adoc[][]

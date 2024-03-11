@@ -1,4 +1,4 @@
-== Module 6: Fix Code with Copilot
+== Module 7: Fix Code with Copilot
 
 We designed the following demonstrations to help you improve your code using GitHub Copilot. Within the module are two sections: Discuss Code and Fix Code. The Discuss Code section is for discussing code with Copilot and getting coding advice. The Fix Code section explores fixing code with Copilot. The fixes include static code errors and code patterns that lead to possible runtime errors.
 
