@@ -56,7 +56,7 @@ The code should fail to compile.
 . Highlight the `return "Name: " + name + ", Age: " + age;` line of code in the editor, right click, and ask Copilot to fix the code in the context menu.
 
 Copilot should give a response similar to this:
-image:../../images/github-copilot-fix-int-to-string.png["Github Copilot Convert Into String"]
+image:images/github-copilot-fix-int-to-string.png["Github Copilot Convert Into String"]
 
 [start=4]
 . Accept the change, and review the code. It should look similar to this.
