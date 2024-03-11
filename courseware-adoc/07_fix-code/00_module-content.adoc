@@ -2,21 +2,4 @@
 
 We designed the following demonstrations to help you improve your code using GitHub Copilot. Within the module are two sections: Discuss Code and Fix Code. The Discuss Code section is for discussing code with Copilot and getting coding advice. The Fix Code section explores fixing code with Copilot. The fixes include static code errors and code patterns that lead to possible runtime errors.
 
-=== Fix Code
-  - C++
-    - [Convert Int to String](./06_improve-code/02_fix-code/01_cpp/01_convert-int-string.md)
-    - [Memory Leaks](./06_improve-code/02_fix-code/01_cpp/02_memory-leaks.md)
-    - [Dangling Pointers](./06_improve-code/02_fix-code/01_cpp/03_dangling-pointers.md)
-    - [Buffer Overflows](./06_improve-code/02_fix-code/01_cpp/04_buffer-overflows.md)
-    - [Undefined Behaviors](./06_improve-code/02_fix-code/01_cpp/05_undefined-behaviors.md)
-    - [Resource Leaks](./06_improve-code/02_fix-code/01_cpp/06_resource-leaks.md)
-    - [Improper Use of Pointers and References](./06_improve-code/02_fix-code/01_cpp/07_improper-use-pointers-and-references.md)
-    - [Memory Allocation Failures](./06_improve-code/02_fix-code/01_cpp/08_memory-allocation-failures.md)
-  - Java
-    - [Incorrect String Concatenation](./06_improve-code/02_fix-code/02_java/01_incorrect-string-concat.md)
-    - [Equality Confusion](./06_improve-code/02_fix-code/02_java/02_equality-confusion.md)
-  - Python
-    - [Convert Int to String](./06_improve-code/02_fix-code/03_python/01_convert-int-string.md)
-    - [Dictionary Key Error](./06_improve-code/02_fix-code/03_python/02_key-error.md)
-  - Java Spring Boot with IntelliJ IDEA (requires the creation of the [opening Spring Boot demo](#explore-github-copilot-demos))
-    - [Sample Link](#)
+include::01_cpp/01_convert-int-string.adoc[]
