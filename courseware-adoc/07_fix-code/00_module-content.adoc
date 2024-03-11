@@ -3,3 +3,18 @@
 We designed the following demonstrations to help you improve your code using GitHub Copilot. Within the module are two sections: Discuss Code and Fix Code. The Discuss Code section is for discussing code with Copilot and getting coding advice. The Fix Code section explores fixing code with Copilot. The fixes include static code errors and code patterns that lead to possible runtime errors.
 
 include::01_cpp/01_convert-int-string.adoc[]
+
+include::01_cpp/02_memory-leaks.adoc[]
+
+include::01_cpp/03_dangling-pointers.adoc[]
+
+include::01_cpp/04_buffer-overflows.adoc[]
+
+include::01_cpp/05_undefined-behaviors.adoc[]
+
+include::01_cpp/06_resource-leaks.adoc[]
+
+include::01_cpp/07_improper-use-pointers-and-references.adoc[]
+
+include::01_cpp/08_memory-allocation-failures.adoc[]
+

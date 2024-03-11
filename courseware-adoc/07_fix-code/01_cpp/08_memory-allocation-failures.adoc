@@ -1,46 +1,64 @@
-# Improve C++ Code with GitHub Copilot
+=== C++: Detect Memory Allocation Failures
 
-## Detect Memory Allocation Failures with Github Copilot
+To run the following code, please create a "Hello World" style C++ project using Visual Studio or JetBrain's CLion. You may use whatever project and build tools you would like.
 
-To run the following code, please create a "Hello World" style C++ project
-using Visual Studio or JetBrain's CLion. You may use whatever project and
-build tools you would like.
+. Open the C++ file with the `main` function. Replace the code in the file, with this code.
 
-1. Open the C++ file with the `main` function. Replace the code in the file,
-   with this code.
+[%linenums,cpp]
+----
+#include <iostream>
+#include <new>
 
-      ```cpp
-      #include <iostream>
-      #include <new>
-      
-      int main() {
-        int* largeArray = nullptr;
-      
-        largeArray = new int[1000000000000];
-      
-        delete[] largeArray;
-      
-        return 0;
-      }
-      ```
+int main() {
+  int* largeArray = nullptr;
 
-2. Do you see the issue? A large array is being allocated, most likely this will
-   fail and a `std::bad_alloc` exception will be thrown. Static code analysis
-   tools will probably not detect this problem. Can GitHub Copilot catch the
-   problem?
+  largeArray = new int[1000000000000];
 
-3. Highlight the code, and ask GitHub Copilot to review the code and suggest
-   a fix if needed. Copilot will probably reply with something similar to this.
+  delete[] largeArray;
 
-    ```text
-    **Problem 1: Memory Allocation Size**
+  return 0;
+}
+----
 
-    The code is trying to allocate a very large amount of memory (1 trillion integers) which is likely to exceed the available memory, causing a `std::bad_alloc` exception to be thrown.
+[start=2]
+. Do you see the issue? A large array is being allocated, most likely this will fail and a `std::bad_alloc` exception will be thrown. Static code analysis tools will probably not detect this problem. Can GitHub Copilot catch the problem?
 
-    **Before:**
-    largeArray = new int[1000000000000];
+[start=3]
+. Highlight the code, and ask GitHub Copilot to review the code and suggest a fix if needed.
 
-    **After:**
+*Copilot will probably reply with something similar to this:*
+
+*Problem 1: Memory Allocation Size*
+
+The code is trying to allocate a very large amount of memory (1 trillion integers) which is likely to exceed the available memory, causing a `std::bad_alloc` exception to be thrown.
+
+*Before:*
+
+[%linenums,cpp]
+largeArray = new int[1000000000000];
+
+*After:*
+
+[%linenums,cpp]
+----
+try {
+    largeArray = new int[1000000]; // Reduced size
+} catch (const std::bad_alloc& e) {
+    std::cerr << "Memory allocation failed: " << e.what() << '\n';
+    return 1;
+}
+----
+
+*Fixed Version of the Code:*
+
+[%linenums,cpp]
+----
+#include <iostream>
+#include <new>
+
+int main() {
+    int* largeArray = nullptr;
+
     try {
         largeArray = new int[1000000]; // Reduced size
     } catch (const std::bad_alloc& e) {
@@ -48,47 +66,35 @@ build tools you would like.
         return 1;
     }
 
-    **Fixed Version of the Code:**
+    delete[] largeArray;
 
-    #include <iostream>
-    #include <new>
+    return 0;
+}
+----
 
-    int main() {
-        int* largeArray = nullptr;
+This version of the code reduces the size of the memory allocation to a more reasonable amount and adds error handling for the memory allocation.
 
-        try {
-            largeArray = new int[1000000]; // Reduced size
-        } catch (const std::bad_alloc& e) {
-            std::cerr << "Memory allocation failed: " << e.what() << '\n';
-            return 1;
-        }
 
-        delete[] largeArray;
+[start=4]
+. Fix the code as suggested, and run it to verify it still works.
 
-        return 0;
-    }
+[%linenums,cpp]
+----
+#include <iostream>
+#include <new>
 
-    This version of the code reduces the size of the memory allocation to a more reasonable amount and adds error handling for the memory allocation.
-    ```
+int main() {
+  int* largeArray = nullptr;
 
-4. Fix the code as suggested, and run it to verify it still works.
+  try {
+    largeArray = new int[1000000]; // Reduced size
+  } catch (const std::bad_alloc& e) {
+    std::cerr << "Memory allocation failed: " << e.what() << '\n';
+    return 1;
+  }
 
-    ```cpp
-    #include <iostream>
-    #include <new>
+  delete[] largeArray;
 
-    int main() {
-      int* largeArray = nullptr;
-
-      try {
-        largeArray = new int[1000000]; // Reduced size
-      } catch (const std::bad_alloc& e) {
-        std::cerr << "Memory allocation failed: " << e.what() << '\n';
-        return 1;
-      }
-
-      delete[] largeArray;
-
-      return 0;
-    }
-    ```
+  return 0;
+}
+----
