@@ -1,0 +1,94 @@
+=== C#: Null References
+
+To run the following code, please create a C# console application using .NET 8, with top-level statements enabled.
+
+. Replace the code in the `Program.cs` file with the following code:
+
+.Program.cs
+[%linenums,c#]
+----
+class Color
+{
+  int Id { get; set; }
+  string Name { get; set; }
+  string Hexcode { get; set; }
+}
+----
+
+Review the code decorations in the Visual Studio editor. The code decorations are the colored lines and icons that appear in the Visual Studio editor. They provide information about the code, such as errors, warnings, and suggestions. The code decorations are a useful way to quickly identify issues in your code.
+
+Are there any issues? What are they? There should be green squiggly lines under the `Name` and `Hexcode` properties. The green squiggly lines indicate that the properties could be null. Checking for possible null references in code is one of the newer features in C#. Many programmers were surprised when these null reference checks started appearing under code that had been working fine for years.
+
+How do we learn more about this null reference checking? How do we turn it off or fix the code to properly account for null references?
+
+[start=2]
+. Highlight the following line code.
+
+.Program.cs
+[%linenums,c#]
+----
+string Name { get; set; }
+----
+
+Once the code is highlighted in the Visual Studio editor, right-click, and select `Ask Copilot` from the content menu. In the dialog that appears, ask the following question:
+
+.Copilot Chat Prompt
+[source,text]
+/fix why is this code complaining about a possible null reference? this code worked fine in the past, what version of C# started checking for this possible null reference? how do I disable the check?
+
+[start=3]
+.Remember, Copilot is non-deterministic so the solution mentioned here may not match the solution that Copilot provides you with. When writing this tutorial, the following solution was suggested by Copilot.
+
+To fix the null reference warnings in your code, you can declare the Name and Hexcode properties as nullable by appending a ? to their types. This indicates that they can have a null value. Here's the updated code:
+
+.Copilot Proposed Change to Source Code
+[%linenums,c#]
+----
+class Color
+{
+  int Id { get; set; }
+  string? Name { get; set; }
+  string? Hexcode { get; set; }
+}
+----
+
+Starting from C# 8.0, the compiler introduced a nullable reference type feature that helps identify possible null reference issues at compile-time. This feature improves code safety and reduces null reference exceptions.
+If you want to disable the null reference check for the entire project, you can add the following line to your project file (.csproj):
+
+.Copilot Proposed Change to CSProj File
+[%linenums,xml]
+----
+<Nullable>disable</Nullable>
+----
+
+However, it's generally recommended to embrace the null reference analysis and fix any potential null reference issues in your code. Disabling the check may lead to unexpected runtime errors.
+
+[start=4]
+.The above response provides a code solution and it shows how to disable the null reference check for the entire project. It also explains why it's generally recommended to embrace the null reference analysis and fix any potential null reference issues in your code.
+
+What do you think about the response? Is it helpful? What would you do next?
+
+[start=5]
+.Add the following question of Copilot.
+
+.Copilot Chat Prompt
+[source,text]
+/fix the Name and Hexcode properties will never be null. How I can tell the compiler that these properties will never be null and avoid optional chaining?
+
+**Copilot may provide a response similar to the following:**
+
+.Copilot Proposed Change
+[%linenums,c#]
+----
+class Color
+{
+  int Id { get; set; }
+  string Name { get; set; } = string.Empty;
+  string Hexcode { get; set; } = string.Empty;
+}
+----
+
+Would this work? Sure, but are there other options? What are they? Will Copilot tell us about them? Feel free to interact with Copilot and ask it to provide more information about the different options available to handle null references in C#.
+
+
+

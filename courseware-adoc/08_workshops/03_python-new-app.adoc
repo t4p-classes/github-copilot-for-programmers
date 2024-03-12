@@ -1,0 +1,25 @@
+=== Build a Calculator with Python
+
+==== Setup
+
+To complete the following workshop, please create a Python console application with Visual Studio Code or JetBrains PyCharm. You can use the free community edition of PyCharm if you do not have a license.
+
+==== Part 1: Basic Calculator Steps
+
+. Create the new project and open the project with Visual Studio Code or PyCharm.
+. Open Copilot Chat, and explain to Copilot that you want to build a console-based calculator in Python. Ask Copilot to help you write the code. Start by asking Copilot to write a command loop that will keep asking the user for input until the user types "exit". For any command other than "exit", print the command in the console. Using the suggestions from Copilot update the code.
+. Next, ask Copilot to track the current calculator state in a variable named "result". Ask Copilot to initialize the variable to 0. Then, ask Copilot to add a new command for adding a number to the result. When the user types "add 5", for example, the result should be updated to 5. If the user types "add 3", the result should be updated to 8. Using the suggestions from Copilot update the code.
+. Verify the code created so far works. Add a new command named "result" that will display the current result any time the users asks. Using the suggestions from Copilot update the code.
+. Next, ask Copilot to add new commands for subtraction, multiplication, and division. Ensure there is the error handling for division by zero. Using the suggestions from Copilot update the code.
+. Finally, ask Copilot to add a command for clearing the result. When the user types "clear", the result should be reset to 0. Using the suggestions from Copilot update the code.
+
+==== Part 2: Calculator History Steps
+
+. Ask Copilot to track the history of all commands entered by the user. When the user types "history", the console should display all the commands entered so far. Using the suggestions from Copilot update the code.
+. Add a command to remove a history entry from the list of commands. When the user types "remove 3", for example, the third command should be removed from the history. Using the suggestions from Copilot update the code.
+. Ask Copilot how to modify the code to display the result based upon the `history` list not the `result` variable. Remove the `result` variable from the code. Using the suggestions from Copilot update the code.
+
+==== Part 3: History File Operations Steps
+
+. Ask Copilot to add a command to save the history to a file. When the user types "save history.txt", the history should be saved to a file named "history.txt". Using the suggestions from Copilot update the code.
+. Ask Copilot to add a command to load the history from a file. When the user types "load history.txt", the history should be loaded from a file named "history.txt". Using the suggestions from Copilot update the code.

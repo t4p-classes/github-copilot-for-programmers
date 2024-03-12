@@ -5,3 +5,9 @@ Following the training session, we encourage you to explore the workshops below 
 include::01_cpp/01_new-app.adoc[]
 
 include::01_cpp/02_unit-tests/00_instructions.adoc[]
+
+include::02_java-new-app.adoc[]
+
+// include::03_python-new-app.adoc[]
+
+include::04_csharp-new-app.adoc[]

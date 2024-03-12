@@ -1,0 +1,68 @@
+=== C#: Blocking Call
+
+To run the following code, please create a C# console application using .NET 8, with top-level statements enabled.
+
+. Replace the code in the `Program.cs` file with the following code:
+
+.Program.cs
+[%linenums,c#]
+----
+ProcessData();
+
+void ProcessData()
+{
+  var result = FetchDataAsync().Result;
+  Console.WriteLine(result);
+}
+
+async Task<string> FetchDataAsync()
+{
+  // Simulating an asynchronous operation
+  await Task.Delay(1000);
+  return "Data";
+}
+----
+
+Does this code have any potential problems? If so, what are they?
+
+[start=2]
+.Highlight the following code, right-click, and select `Ask Copilot` from the context menu.
+
+.Program.cs
+[%linenums,c#]
+----
+void ProcessData()
+{
+  var result = FetchDataAsync().Result;
+  Console.WriteLine(result);
+}
+----
+
+Ask Copilot the following question:
+
+.Copilot Chat Prompt
+[source,text]
+/fix does this code have any potential problems?
+
+[start=3]
+. Copilot should respond with some advice similar to this.
+
+.Copilot Response
+----
+The code snippet you provided has a potential problem known as "deadlock". The use of the .Result property on the Task returned by FetchDataAsync() can cause the calling thread to block until the asynchronous operation completes. However, in this case, the calling thread is the main thread of the application, which is blocked waiting for the asynchronous operation to complete. This can lead to a deadlock situation if the asynchronous operation requires the main thread to continue executing.
+
+To fix this problem, you should use the await keyword instead of blocking on the Result property. Here's the updated code:
+----
+
+.Copilot Proposed Change
+[%linenums,c#]
+----
+async Task ProcessData()
+{
+  var result = await FetchDataAsync();
+  Console.WriteLine(result);
+}
+----
+
+[start=4]
+. The proposed solution is to use the `await` keyword instead of blocking on the `Result` property. This will allow the main thread to continue executing while the asynchronous operation completes. Update the code and the rest of the program to use this approach.

@@ -33,3 +33,5 @@ On the other hand, a non-deterministic program is one where the program's output
 As for GitHub Copilot, OpenAI Codex powers Copilot; OpenAI Codex is a model trained on various public sources, including code repositories. GitHub Copilot provides non-deterministic suggestions. While GitHub designed Copilot to provide relevant code suggestions based on the context of your code, the exact suggestions can vary even in similar contexts. The variation is due to the underlying machine learning model, which has a degree of randomness in its outputs.
 
 include::01_cpp-suggestions.adoc[]
+
+include::02_java-suggestions.adoc[]

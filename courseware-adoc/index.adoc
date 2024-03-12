@@ -29,6 +29,6 @@ include::08_workshops/00_module-content.adoc[]
 
 == Conclusion
 
-Thank you for attending the course! If you have any questions, please get in touch with https://www.linkedin.com/in/ericwgreene[Eric Green,window=_blank]. We hope you enjoyed the course and learned a lot about GitHub Copilot.
+Thank you for attending the course! If you have any questions, please get in touch with https://www.linkedin.com/in/ericwgreene[Eric Greene,window=_blank]. We hope you enjoyed the course and learned a lot about GitHub Copilot.
 
 We look forward to serving you in a future course!

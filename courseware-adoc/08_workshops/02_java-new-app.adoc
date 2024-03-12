@@ -1,0 +1,685 @@
+=== Build a Calculator with Java
+
+==== Setup
+
+To complete the following workshop, please create a Java console application.
+
+==== Part 1: Basic Calculator Steps
+
+Note: For Part 1, sample Copilot chat prompts and suggested code are provided. For Part 2 and Part 3, you will need to create your own chat prompts and use the suggestions from Copilot to update the code.
+
+. Create a new project and open the project with IntelliJ IDEA.
+. Open Copilot Chat, and explain to Copilot that you want to build a console-based calculator in Java. Ask Copilot to help you write the code. Start by asking Copilot to write a command loop that will keep asking the user for input until the user types "exit". For any command other than "exit", print the command in the console. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+I am working on new Java console-based Calculator program. I will need some help writing the code. Can you please create a basic command loop that will ask users for a new command until the user types "exit". When the user types "exit" the program should end. For any other comment, please display the command in the console before asking for the next command.
+
+.Copilot Suggested Code
+[%linenums,java]
+----
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command;
+
+        do {
+            System.out.println("Enter a command:");
+            command = scanner.nextLine();
+            if (!command.equalsIgnoreCase("exit")) {
+                System.out.println("You entered: " + command);
+            }
+        } while (!command.equalsIgnoreCase("exit"));
+
+        scanner.close();
+        System.out.println("Program ended.");
+    }
+}
+----
+
+[start=3]
+. Next, ask Copilot to track the current calculator state in a variable named "result". Ask Copilot to initialize the variable to 0. Then, ask Copilot to add a new command to add a number to the result. When the user types "add 5", for example, the result should be updated to 5. If the user types "add 3", the result should be updated to 8. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Track current state of the calculator with a result variable initialized to 0. The result should be a floating point number. Also, please add one command for adding a number to the result. The command should display the new result after performing the add operation. The format of the command should be similar to this "add 3" which would then add 3 to the result and display the new result.
+
+.Copilot Suggested Code
+[%linenums,java]
+----
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command;
+        double result = 0.0;
+
+        do {
+            System.out.println("Enter a command:");
+            command = scanner.nextLine();
+
+            if (!command.equalsIgnoreCase("exit")) {
+                String[] parts = command.split(" ");
+                if (parts[0].equalsIgnoreCase("add") && parts.length > 1) {
+                    try {
+                        double numberToAdd = Double.parseDouble(parts[1]);
+                        result += numberToAdd;
+                        System.out.println("New result: " + result);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number format. Please enter a valid number to add.");
+                    }
+                } else {
+                    System.out.println("You entered: " + command);
+                }
+            }
+        } while (!command.equalsIgnoreCase("exit"));
+
+        scanner.close();
+        System.out.println("Program ended.");
+    }
+}
+----
+
+[start=4]
+. Verify the code created so far works. Add a new command named "result" to display the current result whenever the user asks. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Add a command to display the current result. Also, if the user types an unrecognized command, please display an error message and allow the user to type another command.
+
+.Copilot Suggested Code
+[%linenums,java]
+----
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command;
+        double result = 0.0;
+
+        do {
+            System.out.println("Enter a command:");
+            command = scanner.nextLine();
+
+            if (!command.equalsIgnoreCase("exit")) {
+                String[] parts = command.split(" ");
+                if (parts[0].equalsIgnoreCase("add") && parts.length > 1) {
+                    try {
+                        double numberToAdd = Double.parseDouble(parts[1]);
+                        result += numberToAdd;
+                        System.out.println("New result: " + result);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number format. Please enter a valid number to add.");
+                    }
+                } else if (parts[0].equalsIgnoreCase("result")) {
+                    System.out.println("Current result: " + result);
+                } else {
+                    System.out.println("Unrecognized command. Please enter a valid command.");
+                }
+            }
+        } while (!command.equalsIgnoreCase("exit"));
+
+        scanner.close();
+        System.out.println("Program ended.");
+    }
+}
+----
+
+[start=5]
+.The code is starting to get a bit long. Ask Copilot to help you refactor the code to make it more readable. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Please refactor the code to make it more readable.
+
+.Copilot Suggested Code
+[%linenums,java]
+----
+import java.util.Scanner;
+
+public class Main {
+    private static final String EXIT_COMMAND = "exit";
+    private static final String ADD_COMMAND = "add";
+    private static final String RESULT_COMMAND = "result";
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command;
+        double result = 0.0;
+
+        do {
+            System.out.println("Enter a command:");
+            command = scanner.nextLine();
+
+            if (!command.equalsIgnoreCase(EXIT_COMMAND)) {
+                result = processCommand(command, result);
+            }
+        } while (!command.equalsIgnoreCase(EXIT_COMMAND));
+
+        scanner.close();
+        System.out.println("Program ended.");
+    }
+
+    // Process the user's command and return the updated result
+    private static double processCommand(String command, double currentResult) {
+        String[] parts = command.split(" ");
+        if (parts[0].equalsIgnoreCase(ADD_COMMAND) && parts.length > 1) {
+            currentResult = processAddCommand(parts[1], currentResult);
+        } else if (parts[0].equalsIgnoreCase(RESULT_COMMAND)) {
+            displayResult(currentResult);
+        } else {
+            System.out.println("Unrecognized command. Please enter a valid command.");
+        }
+        return currentResult;
+    }
+
+    // Process the add command and return the updated result
+    private static double processAddCommand(String numberString, double currentResult) {
+        try {
+            double numberToAdd = Double.parseDouble(numberString);
+            currentResult += numberToAdd;
+            System.out.println("New result: " + currentResult);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to add.");
+        }
+        return currentResult;
+    }
+
+    // Display the current result
+    private static void displayResult(double result) {
+        System.out.println("Current result: " + result);
+    }
+}
+----
+
+[start=6]
+. Next, ask Copilot to add new commands for subtraction, multiplication, and division. Ensure there is the error handling for division by zero. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Please add commands for subtraction, multiplication, and division. Also, ensure there is error handling for division by zero.
+
+.Copilot Suggested Code
+[%linenums,java]
+----
+import java.util.Scanner;
+
+public class Main {
+    private static final String EXIT_COMMAND = "exit";
+    private static final String ADD_COMMAND = "add";
+    private static final String SUBTRACT_COMMAND = "subtract";
+    private static final String MULTIPLY_COMMAND = "multiply";
+    private static final String DIVIDE_COMMAND = "divide";
+    private static final String RESULT_COMMAND = "result";
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command;
+        double result = 0.0;
+
+        do {
+            System.out.println("Enter a command:");
+            command = scanner.nextLine();
+
+            if (!command.equalsIgnoreCase(EXIT_COMMAND)) {
+                result = processCommand(command, result);
+            }
+        } while (!command.equalsIgnoreCase(EXIT_COMMAND));
+
+        scanner.close();
+        System.out.println("Program ended.");
+    }
+
+    // Process the user's command and return the updated result
+    private static double processCommand(String command, double currentResult) {
+        String[] parts = command.split(" ");
+        if (parts[0].equalsIgnoreCase(ADD_COMMAND) && parts.length > 1) {
+            currentResult = processAddCommand(parts[1], currentResult);
+        } else if (parts[0].equalsIgnoreCase(SUBTRACT_COMMAND) && parts.length > 1) {
+            currentResult = processSubtractCommand(parts[1], currentResult);
+        } else if (parts[0].equalsIgnoreCase(MULTIPLY_COMMAND) && parts.length > 1) {
+            currentResult = processMultiplyCommand(parts[1], currentResult);
+        } else if (parts[0].equalsIgnoreCase(DIVIDE_COMMAND) && parts.length > 1) {
+            currentResult = processDivideCommand(parts[1], currentResult);
+        } else if (parts[0].equalsIgnoreCase(RESULT_COMMAND)) {
+            displayResult(currentResult);
+        } else {
+            System.out.println("Unrecognized command. Please enter a valid command.");
+        }
+        return currentResult;
+    }
+
+    // Process the add command and return the updated result
+    private static double processAddCommand(String numberString, double currentResult) {
+        try {
+            double numberToAdd = Double.parseDouble(numberString);
+            currentResult += numberToAdd;
+            System.out.println("New result: " + currentResult);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to add.");
+        }
+        return currentResult;
+    }
+
+    // Process the subtract command and return the updated result
+    private static double processSubtractCommand(String numberString, double currentResult) {
+        try {
+            double numberToSubtract = Double.parseDouble(numberString);
+            currentResult -= numberToSubtract;
+            System.out.println("New result: " + currentResult);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to subtract.");
+        }
+        return currentResult;
+    }
+
+    // Process the multiply command and return the updated result
+    private static double processMultiplyCommand(String numberString, double currentResult) {
+        try {
+            double numberToMultiply = Double.parseDouble(numberString);
+            currentResult *= numberToMultiply;
+            System.out.println("New result: " + currentResult);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to multiply.");
+        }
+        return currentResult;
+    }
+
+    // Process the divide command and return the updated result
+    private static double processDivideCommand(String numberString, double currentResult) {
+        try {
+            double numberToDivide = Double.parseDouble(numberString);
+            if (numberToDivide == 0) {
+                System.out.println("Error: Division by zero is not allowed.");
+            } else {
+                currentResult /= numberToDivide;
+                System.out.println("New result: " + currentResult);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to divide.");
+        }
+        return currentResult;
+    }
+
+    // Display the current result
+    private static void displayResult(double result) {
+        System.out.println("Current result: " + result);
+    }
+}
+----
+
+[start=7]
+. Finally, ask Copilot to add a command for clearing the result. When the user types "clear", the result should be reset to 0. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Please add a command for clearing the result. When the user types "clear", the result should be reset to 0.
+
+.Copilot Suggested Code
+[%linenums,java]
+----
+import java.util.Scanner;
+
+public class Main {
+    private static final String EXIT_COMMAND = "exit";
+    private static final String ADD_COMMAND = "add";
+    private static final String SUBTRACT_COMMAND = "subtract";
+    private static final String MULTIPLY_COMMAND = "multiply";
+    private static final String DIVIDE_COMMAND = "divide";
+    private static final String RESULT_COMMAND = "result";
+    private static final String CLEAR_COMMAND = "clear";
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command;
+        double result = 0.0;
+
+        do {
+            System.out.println("Enter a command:");
+            command = scanner.nextLine();
+
+            if (!command.equalsIgnoreCase(EXIT_COMMAND)) {
+                result = processCommand(command, result);
+            }
+        } while (!command.equalsIgnoreCase(EXIT_COMMAND));
+
+        scanner.close();
+        System.out.println("Program ended.");
+    }
+
+    // Process the user's command and return the updated result
+    private static double processCommand(String command, double currentResult) {
+        String[] parts = command.split(" ");
+        if (parts[0].equalsIgnoreCase(ADD_COMMAND) && parts.length > 1) {
+            currentResult = processAddCommand(parts[1], currentResult);
+        } else if (parts[0].equalsIgnoreCase(SUBTRACT_COMMAND) && parts.length > 1) {
+            currentResult = processSubtractCommand(parts[1], currentResult);
+        } else if (parts[0].equalsIgnoreCase(MULTIPLY_COMMAND) && parts.length > 1) {
+            currentResult = processMultiplyCommand(parts[1], currentResult);
+        } else if (parts[0].equalsIgnoreCase(DIVIDE_COMMAND) && parts.length > 1) {
+            currentResult = processDivideCommand(parts[1], currentResult);
+        } else if (parts[0].equalsIgnoreCase(RESULT_COMMAND)) {
+            displayResult(currentResult);
+        } else if (parts[0].equalsIgnoreCase(CLEAR_COMMAND)) {
+            currentResult = 0.0;
+            System.out.println("Result cleared.");
+        } else {
+            System.out.println("Unrecognized command. Please enter a valid command.");
+        }
+        return currentResult;
+    }
+
+    // Process the add command and return the updated result
+    private static double processAddCommand(String numberString, double currentResult) {
+        try {
+            double numberToAdd = Double.parseDouble(numberString);
+            currentResult += numberToAdd;
+            System.out.println("New result: " + currentResult);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to add.");
+        }
+        return currentResult;
+    }
+
+    // Process the subtract command and return the updated result
+    private static double processSubtractCommand(String numberString, double currentResult) {
+        try {
+            double numberToSubtract = Double.parseDouble(numberString);
+            currentResult -= numberToSubtract;
+            System.out.println("New result: " + currentResult);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to subtract.");
+        }
+        return currentResult;
+    }
+
+    // Process the multiply command and return the updated result
+    private static double processMultiplyCommand(String numberString, double currentResult) {
+        try {
+            double numberToMultiply = Double.parseDouble(numberString);
+            currentResult *= numberToMultiply;
+            System.out.println("New result: " + currentResult);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to multiply.");
+        }
+        return currentResult;
+    }
+
+    // Process the divide command and return the updated result
+    private static double processDivideCommand(String numberString, double currentResult) {
+        try {
+            double numberToDivide = Double.parseDouble(numberString);
+            if (numberToDivide == 0) {
+                System.out.println("Error: Division by zero is not allowed.");
+            } else {
+                currentResult /= numberToDivide;
+                System.out.println("New result: " + currentResult);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to divide.");
+        }
+        return currentResult;
+    }
+
+    // Display the current result
+    private static void displayResult(double result) {
+        System.out.println("Current result: " + result);
+    }
+}
+----
+
+If Copilot places the `Calculator` instantiation and `Run` method call at the bottom of the file, move it to the top of the `Program.cs` file.
+
+==== Part 2: Calculator History Steps
+
+Note: For Part 2, the steps are listed, but no sample prompts or code are provided. You will need to create your own chat prompts and use the suggestions from Copilot to update the code.
+
+. Ask Copilot to track the history of all commands entered by the user. When the user types "history", the console should display all the commands entered so far. Using the suggestions from Copilot, update the code.
+. Add a command to remove a history entry from the list of commands. When the user types "remove 3", for example, the third command should be removed from the history. Using the suggestions from Copilot, update the code.
+. Ask Copilot how to modify the code to display the result based upon the `history` list not the `result` variable. Remove the `result` variable from the code. Using the suggestions from Copilot, update the code.
+
+Note: The solution to part 2 is located at the of this workshop.
+
+==== Part 3: History File Operations Steps
+
+Note: For Part 3, a user story describes your task. Complete the user story using your AI pair-programming skills. Unlike Part 1 and 2, there is no solution provided for Part 3. Good luck!
+
+.User Story: Persist and Reload Calculator Command History
+----
+As a user of the calculator application, I want the ability to persist the history of my calculator commands to a file and reload those commands from the file back into the calculator. This will allow me to save my calculation history for future reference and easily restore my previous calculations when needed.
+
+Acceptance Criteria:
+1. The calculator application should provide an option to save the command history to a file.
+   - The user should be able to specify the location and name of the file to save the command history.
+   - The command history should be saved in JSON.
+   - The user should receive confirmation that the command history has been successfully saved to the file.
+
+2. The calculator application should provide an option to load a previously saved command history file.
+   - The user should be able to select the file containing the command history to be loaded.
+   - The application should validate the file format and ensure that it contains valid command history data.
+   - If the file is valid, the command history should be loaded into the calculator, replacing any existing command history.
+   - The user should receive confirmation that the command history has been successfully loaded from the file.
+
+3. The loaded command history should be accessible and usable within the calculator.
+   - The user should be able to view the loaded command history, including all previous commands and their results.
+   - The user should be able to navigate through the loaded command history, similar to the existing functionality for navigating the command history within the calculator.
+   - The user should be able to execute commands from the loaded command history, as if they were entered manually.
+
+4. Do not worry about implementing error handling for reading and writing to the file.
+----
+
+==== Solution for Part 2
+
+.Copilot Chat Prompt #1
+[source,text]
+Enhance the application to remember only the history of math commands (add, subtract, multiply, divide) typed by the user. Each command in the history should be an object with a field for the command name and the number entered by the user. Also, include a new command named "history" that will display the history of math operations. The clear command should clear the history.
+
+.Copilot Chat Prompt #2
+[source,text]
+Enhance the code to remove an entry from the history using a new command named "remove". The structure for the command is "remove 3" where 3 is the index of the command to remove. If there is no command at that index, please display an error message and allow the user to enter another command.
+
+.Copilot Chat Prompt #3
+[source,text]
+Remove the result variable, and calculate the result using the history of math commands.
+
+.Final Code Solution to Part 2, Main.java
+[%linenums,java]
+----
+package com.training4programmers;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    private static final String EXIT_COMMAND = "exit";
+    private static final String ADD_COMMAND = "add";
+    private static final String SUBTRACT_COMMAND = "subtract";
+    private static final String MULTIPLY_COMMAND = "multiply";
+    private static final String DIVIDE_COMMAND = "divide";
+    private static final String RESULT_COMMAND = "result";
+    private static final String CLEAR_COMMAND = "clear";
+    private static final String HISTORY_COMMAND = "history";
+    private static final String REMOVE_COMMAND = "remove";
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String command;
+        List<Command> history = new ArrayList<>();
+
+        do {
+            System.out.println("Enter a command:");
+            command = scanner.nextLine();
+
+            if (!command.equalsIgnoreCase(EXIT_COMMAND)) {
+                processCommand(command, history);
+            }
+        } while (!command.equalsIgnoreCase(EXIT_COMMAND));
+
+        scanner.close();
+        System.out.println("Program ended.");
+    }
+
+    // Process the user's command
+    private static void processCommand(String command, List<Command> history) {
+        String[] parts = command.split(" ");
+        if (parts[0].equalsIgnoreCase(ADD_COMMAND) && parts.length > 1) {
+            processAddCommand(parts[1], history);
+        } else if (parts[0].equalsIgnoreCase(SUBTRACT_COMMAND) && parts.length > 1) {
+            processSubtractCommand(parts[1], history);
+        } else if (parts[0].equalsIgnoreCase(MULTIPLY_COMMAND) && parts.length > 1) {
+            processMultiplyCommand(parts[1], history);
+        } else if (parts[0].equalsIgnoreCase(DIVIDE_COMMAND) && parts.length > 1) {
+            processDivideCommand(parts[1], history);
+        } else if (parts[0].equalsIgnoreCase(RESULT_COMMAND)) {
+            displayResult(calculateResult(history));
+        } else if (parts[0].equalsIgnoreCase(CLEAR_COMMAND)) {
+            history.clear();
+            System.out.println("Result and history cleared.");
+        } else if (parts[0].equalsIgnoreCase(HISTORY_COMMAND)) {
+            displayHistory(history);
+        } else if (parts[0].equalsIgnoreCase(REMOVE_COMMAND) && parts.length > 1) {
+            processRemoveCommand(parts[1], history);
+        } else {
+            System.out.println("Unrecognized command. Please enter a valid command.");
+        }
+    }
+
+    // Process the add command
+    private static void processAddCommand(String numberString, List<Command> history) {
+        try {
+            double numberToAdd = Double.parseDouble(numberString);
+            history.add(new Command(ADD_COMMAND, numberToAdd));
+            System.out.println("New result: " + calculateResult(history));
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to add.");
+        }
+    }
+
+    // Process the subtract command
+    private static void processSubtractCommand(String numberString, List<Command> history) {
+        try {
+            double numberToSubtract = Double.parseDouble(numberString);
+            history.add(new Command(SUBTRACT_COMMAND, numberToSubtract));
+            System.out.println("New result: " + calculateResult(history));
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to subtract.");
+        }
+    }
+
+    // Process the multiply command
+    private static void processMultiplyCommand(String numberString, List<Command> history) {
+        try {
+            double numberToMultiply = Double.parseDouble(numberString);
+            history.add(new Command(MULTIPLY_COMMAND, numberToMultiply));
+            System.out.println("New result: " + calculateResult(history));
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to multiply.");
+        }
+    }
+
+    // Process the divide command
+    private static void processDivideCommand(String numberString, List<Command> history) {
+        try {
+            double numberToDivide = Double.parseDouble(numberString);
+            if (numberToDivide == 0) {
+                System.out.println("Error: Division by zero is not allowed.");
+            } else {
+                history.add(new Command(DIVIDE_COMMAND, numberToDivide));
+                System.out.println("New result: " + calculateResult(history));
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format. Please enter a valid number to divide.");
+        }
+    }
+
+    // Process the remove command
+    private static void processRemoveCommand(String indexString, List<Command> history) {
+        try {
+            int indexToRemove = Integer.parseInt(indexString);
+            if (indexToRemove < 0 || indexToRemove >= history.size()) {
+                System.out.println("Error: Index out of bounds. Please enter a valid index to remove.");
+            } else {
+                history.remove(indexToRemove);
+                System.out.println("Command removed from history.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid index format. Please enter a valid index to remove.");
+        }
+    }
+
+    // Calculate the result based on the history of commands
+    private static double calculateResult(List<Command> history) {
+        double result = 0.0;
+        for (Command command : history) {
+            switch (command.getName()) {
+                case ADD_COMMAND:
+                    result += command.getNumber();
+                    break;
+                case SUBTRACT_COMMAND:
+                    result -= command.getNumber();
+                    break;
+                case MULTIPLY_COMMAND:
+                    result *= command.getNumber();
+                    break;
+                case DIVIDE_COMMAND:
+                    if (command.getNumber() != 0) {
+                        result /= command.getNumber();
+                    }
+                    break;
+            }
+        }
+        return result;
+    }
+
+    // Display the current result
+    private static void displayResult(double result) {
+        System.out.println("Current result: " + result);
+    }
+
+    // Display the history of commands
+    private static void displayHistory(List<Command> history) {
+        if (history.isEmpty()) {
+            System.out.println("No history available.");
+        } else {
+            System.out.println("History of commands:");
+            for (int i = 0; i < history.size(); i++) {
+                System.out.println(i + ": " + history.get(i));
+            }
+        }
+    }
+}
+----
+
+.Final Code Solution to Part 2, Command.java
+[%linenums,java]
+----
+package com.training4programmers;
+
+public class Command {
+    private String name;
+    private double number;
+
+    public Command(String name, double number) {
+        this.name = name;
+        this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getNumber() {
+        return number;
+    }
+
+    @Override
+    public String toString() {
+        return "Command: " + name + ", Number: " + number;
+    }
+}
+----

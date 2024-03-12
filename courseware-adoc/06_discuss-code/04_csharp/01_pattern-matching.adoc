@@ -1,0 +1,186 @@
+=== C#: Pattern Matching
+
+To run the following code, please create a C# console application using .NET 8, with top-level statements enabled.
+
+. Replace the code in the `Program.cs` file with the following code:
+
+.Program.cs
+[%linenums,c#]
+----
+Shape shape = new Circle { Radius = 5 };
+// Shape shape = new Rectangle { Width = 10, Height = 20 };
+// Shape shape = new Triangle { Base = 10, Height = 20 };
+
+if (shape is Circle)
+{
+  Circle circle = (Circle)shape;
+  Console.WriteLine($"Processing a circle with radius {circle.Radius}");
+}
+else if (shape is Rectangle)
+{
+  Rectangle rectangle = (Rectangle)shape;
+  Console.WriteLine($"Processing a rectangle with width {rectangle.Width} and height {rectangle.Height}");
+}
+else if (shape is Triangle)
+{
+  Triangle triangle = (Triangle)shape;
+  Console.WriteLine($"Processing a triangle with base {triangle.Base} and height {triangle.Height}");
+}
+else
+{
+  Console.WriteLine("Unknown shape type");
+}
+
+interface Shape
+{
+  public void Draw();
+}
+
+class Circle : Shape
+{
+  public int Radius { get; set; }
+  public void Draw()
+  {
+    Console.WriteLine("Drawing a circle");
+  }
+}
+
+class Rectangle : Shape
+{
+  public int Width { get; set; }
+  public int Height { get; set; }
+  public void Draw()
+  {
+    Console.WriteLine("Drawing a rectangle");
+  }
+}
+
+class Triangle : Shape
+{
+  public int Base { get; set; }
+  public int Height { get; set; }
+  public void Draw()
+  {
+    Console.WriteLine("Drawing a triangle");
+  }
+}
+----
+
+Run the code, it should work as expected.
+
+[start=2]
+. Is this the best way to write this code using modern C#? Why or why not?
+. Highlight the following code block.
+
+.Program.cs
+[%linenums,c#]
+----
+if (shape is Circle)
+{
+  Circle circle = (Circle)shape;
+  Console.WriteLine($"Processing a circle with radius {circle.Radius}");
+}
+else if (shape is Rectangle)
+{
+  Rectangle rectangle = (Rectangle)shape;
+  Console.WriteLine($"Processing a rectangle with width {rectangle.Width} and height {rectangle.Height}");
+}
+else if (shape is Triangle)
+{
+  Triangle triangle = (Triangle)shape;
+  Console.WriteLine($"Processing a triangle with base {triangle.Base} and height {triangle.Height}");
+}
+else
+{
+  Console.WriteLine("Unknown shape type");
+}
+----
+
+Once the code is highlighted in the Visual Studio editor, right-click, and select `Ask Copilot` from the content menu. In the dialog that appears, ask the following question:
+
+.Copilot Chat Prompt
+[source,text]
+/fix Is this the best way to write this code?
+
+[start=3]
+.Remember, Copilot is non-deterministic so the solution mentioned here may not match the solution that Copilot provides you with. When writing this tutorial, the following solution was suggested by Copilot.
+
+.Copilot Proposed Change
+[%linenums,c#]
+----
+if (shape is Circle circle)
+{
+  Console.WriteLine($"Processing a circle with radius {circle.Radius}");
+}
+else if (shape is Rectangle rectangle)
+{
+  Console.WriteLine($"Processing a rectangle with width {rectangle.Width} and height {rectangle.Height}");
+}
+else if (shape is Triangle triangle)
+{
+  Console.WriteLine($"Processing a triangle with base {triangle.Base} and height {triangle.Height}");
+}
+else
+{
+  Console.WriteLine("Unknown shape type");
+}
+----
+
+You will notice the lines of code casting the object from one type to another for each code branch have been removed and replaced with newer pattern-matching syntax in the `if` statement conditional expression. The enhanced conditional expression is a more modern way to write the code and is more readable.
+
+Can this be further improved? Accept the suggested change, and we will continue the discussion.
+
+[start=4]
+. Highlight the same code block as before, and open the Copilot chat window.
+
+.Program.cs
+[%linenums,c#]
+----
+if (shape is Circle circle)
+{
+  Console.WriteLine($"Processing a circle with radius {circle.Radius}");
+}
+else if (shape is Rectangle rectangle)
+{
+  Console.WriteLine($"Processing a rectangle with width {rectangle.Width} and height {rectangle.Height}");
+}
+else if (shape is Triangle triangle)
+{
+  Console.WriteLine($"Processing a triangle with base {triangle.Base} and height {triangle.Height}");
+}
+else
+{
+  Console.WriteLine("Unknown shape type");
+}
+----
+
+In the chat window, ask the following question:
+
+.Copilot Chat Prompt
+[source,text]
+/fix Is an if-else chain the best way to structure this? Does pattern matching support a cleaner control flow structure?
+
+Copilot chat will probably suggest the following code improvement:
+
+.Copilot Proposed Change
+[%linenums,c#]
+----
+switch (shape)
+{
+    case Circle circle:
+        Console.WriteLine($"Processing a circle with radius {circle.Radius}");
+        break;
+    case Rectangle rectangle:
+        Console.WriteLine($"Processing a rectangle with width {rectangle.Width} and height {rectangle.Height}");
+        break;
+    case Triangle triangle:
+        Console.WriteLine($"Processing a triangle with base {triangle.Base} and height {triangle.Height}");
+        break;
+    default:
+        Console.WriteLine("Unknown shape type");
+        break;
+}
+----
+
+Compare this final code to the original code at the start of the tutorial. The final code is more readable and easier to understand. It also uses the modern pattern-matching syntax to improve the control flow structure. This is a good example of how Copilot can help you write better code - even experienced programmers can learn from Copilot's suggestions.
+

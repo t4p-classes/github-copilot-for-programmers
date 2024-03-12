@@ -2,5 +2,6 @@
 
 - Delete a Folder and Its Contents
 
+.Copilot Chat Prompt
 [source,text]
 @terminal How do I delete a folder and all its contents?

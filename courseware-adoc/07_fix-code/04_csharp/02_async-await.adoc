@@ -1,0 +1,93 @@
+=== C#: Async without Await
+
+To run the following code, please create a C# console application using .NET 8, with top-level statements enabled.
+
+. Replace the code in the `Program.cs` file with the following code:
+
+.Program.cs
+[%linenums,c#]
+----
+IColorsData colorsData = new ColorsInMemoryData();
+var colors = await colorsData.AllColors();
+foreach (var color in colors)
+{
+  Console.WriteLine($"Color: {color.Name}, HexCode: {color.HexCode}");
+}
+
+class ColorsInMemoryData: IColorsData
+{
+    private List<Color> _colors = new List<Color>
+    {
+    new Color {Id = 1, Name = "Red", HexCode = "#FF0000"},
+    new Color {Id = 2, Name = "Green", HexCode = "#00FF00"},
+    new Color {Id = 3, Name = "Blue", HexCode = "#0000FF"}
+  };
+
+  public async Task<IEnumerable<Color>> AllColors()
+  {
+    return _colors;
+  }
+}
+
+class ColorsSqlData: IColorsData
+{
+  private readonly string _connectionString;
+  public ColorsSqlData(string connectionString)
+  {
+    _connectionString = connectionString;
+  }
+
+  public Task<IEnumerable<Color>> AllColors()
+  {
+    throw new NotImplementedException();
+  }
+}
+
+
+record Color
+{
+  public int Id { get; init;}
+  public required string Name { get; init; }
+  public required string HexCode { get; init; }
+}
+
+interface IColorsData
+{
+  Task<IEnumerable<Color>> AllColors();
+}
+----
+
+The code will compile and run, but the editor complains that `await` needs to be called in the `async` marked method in the `ColorsInMemoryData` class. The `AllColors` method is marked as `async` but does not contain an `await` statement.
+
+[start=2]
+.When implementing an in-memory version of the `IColorsData` interface, the `AllColors` returns `Task<T>` which is great for asynchronous implementations (such as accessing a real database), but for in-memory operations the method is not really asynchronous. So how do we fake this to satisfy the interface?
+.Highlight the following code, right-click, and select `Ask Copilot`.
+
+.Program.cs
+[%linenums,c#]
+----
+public async Task<IEnumerable<Color>> AllColors()
+{
+  return _colors;
+}
+----
+
+Ask Copilot the following question:
+
+.Copilot Chat Prompt
+[source,text]
+/fix how do I fake an asynchronous operation in the AllColors method without using async/await?
+
+[start=3]
+. Copilot should make a suggestion similar to this.
+
+.Copilot Proposed Change
+[%linenums,c#]
+----
+public Task<IEnumerable<Color>> AllColors()
+{
+  return Task.FromResult<IEnumerable<Color>>(_colors);
+}
+----
+
+Accept the solution and run the code. The code will compile and run successfully. Also, there should be no more warnings in the editor.

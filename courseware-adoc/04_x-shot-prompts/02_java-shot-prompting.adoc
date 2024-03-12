@@ -4,6 +4,7 @@
 
 Chat with Copilot using the following prompt.
 
+.Copilot Chat Prompt
 [source,text]
 Create a new Java class for an Airplane.
 
@@ -11,6 +12,7 @@ Create a new Java class for an Airplane.
 
 Chat with Copilot using the following prompt which includes an example of what we are looking for.
 
+.Copilot Chat Prompt
 [source,text]
 ----
 Create a new Java class for an Airplane.

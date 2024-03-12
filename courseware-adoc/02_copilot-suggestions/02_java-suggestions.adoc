@@ -1,0 +1,24 @@
+=== Demo: Java Code Suggestions
+
+The following demo will explore how to use the in-editor code suggestions provided by GitHub Copilot. Create a new "Hello, World!" style Java console project. Open the project in IntelliJ IDEA.
+
+. Create a function that adds two numbers together. In the editor, type in the following comment.
+
+[source,java]
+----
+// add two numbers together
+----
+
+[start=2]
+. Type `<TAB>` to accept the suggestion. Observe how the suggestion follows the coding example of the `addTwoNumbers` function.
+
+[source,java]
+----
+private static int addTwoNumbers(int firstNumber, int secondNumber) {
+    return firstNumber + secondNumber;
+}
+----
+
+[start=3]
+. Delete the accepted code, place cursor at end of the original comment, then hit `<ENTER>`. On the IntelliJ IDEA menu, click `Tools` > `Copilot` > `Show Completions`. Review the suggestions that appear. Accept one of the suggestions, if you like.
+

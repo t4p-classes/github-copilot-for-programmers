@@ -1,0 +1,65 @@
+=== C#: Index Out of Range
+
+To run the following code, please create a C# console application using .NET 8, with top-level statements enabled.
+
+. Replace the code in the `Program.cs` file with the following code:
+
+.Program.cs
+[%linenums,c#]
+----
+decimal[] prices = { 9.99m, 10.00m, 20.50m, 30.00m, 40.00m };
+decimal totalPrice = CalculateTotalPrice(prices);
+Console.WriteLine($"Total price: {totalPrice:C}");
+
+static decimal CalculateTotalPrice(decimal[] prices)
+{
+  decimal total = 0;
+  for (int i = 0; i <= prices.Length; i++)
+  {
+    total += prices[i];
+  }
+  return total;
+}
+----
+
+[start=2]
+. Highlight the code in the function `CalculateTotalPrice`, right-click, and select `Ask Copilot`.
+
+.Program.cs
+[%linenums,c#]
+----
+static decimal CalculateTotalPrice(decimal[] prices)
+{
+  decimal total = 0;
+  for (int i = 0; i <= prices.Length; i++)
+  {
+    total += prices[i];
+  }
+  return total;
+}
+----
+
+In the Copilot dialog, enter the following prompt:
+
+.Copilot Chat Prompt
+[source,text]
+/fix
+
+[start=3]
+.Copilot should see the error with the loop iterating one too many times and suggest a fix similar to this.
+
+.Copilot Proposed Change
+[%linenums,c#]
+----
+static decimal CalculateTotalPrice(decimal[] prices)
+{
+  decimal total = 0;
+  for (int i = 0; i < prices.Length; i++)
+  {
+    total += prices[i];
+  }
+  return total;
+}
+----
+
+The less-than or equal to operator in the for loop condition should be replaced with only a less-than operator. Copilot can detect some runtime errors, it is not limited to just syntax errors.

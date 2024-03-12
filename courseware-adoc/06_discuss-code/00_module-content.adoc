@@ -7,4 +7,10 @@ include::01_cpp/01_get-code-advice.adoc[]
 
 include::02_java/01_csharp-like-properties.adoc[]
 
-include::03_python/01_inefficient-loop.adoc[][]
+include::02_java/02_coding-conventions.adoc[]
+
+include::03_python/01_inefficient-loop.adoc[]
+
+include::04_csharp/01_pattern-matching.adoc[]
+
+include::04_csharp/02_null-references.adoc[]

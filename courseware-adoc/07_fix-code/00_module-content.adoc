@@ -26,3 +26,10 @@ include::03_python/01_convert-int-string.adoc[]
 
 include::03_python/02_key-error.adoc[]
 
+include::04_csharp/01_index-out-of-range.adoc[][]
+
+include::04_csharp/02_async-await.adoc[]
+
+include::04_csharp/03_blocking-call.adoc[]
+
+

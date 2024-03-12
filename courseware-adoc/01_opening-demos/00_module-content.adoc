@@ -8,13 +8,15 @@ Some editors require two extensions: one for the Copilot suggestions and one for
 
 === GitHub Copilot Editor Extensions
 
-- https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot[Getting Started with Copilot Editor Extensions,window=_blank]
-- https://docs.github.com/en/copilot/github-copilot-chat/using-github-copilot-chat-in-your-ide[Getting Started with Copilot Chat Editor Extensions,window=_blank]
+- link:https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot[Getting Started with Copilot Editor Extensions,window=_blank]
+- link:https://docs.github.com/en/copilot/github-copilot-chat/using-github-copilot-chat-in-your-ide[Getting Started with Copilot Chat Editor Extensions,window=_blank]
 
 include::01_cpp-console-vscode.adoc[]
 
 include::02_java-console-vscode.adoc[]
 
-include::03_python-console-vscode.adoc[]
+include::03_java-spring-boot-intellij.adoc[]
 
-include::04_java-spring-boot-intellij.adoc[]
+include::04_python-console-vscode.adoc[]
+
+include::05_csharp-aspnetmvc-webapi.adoc[]

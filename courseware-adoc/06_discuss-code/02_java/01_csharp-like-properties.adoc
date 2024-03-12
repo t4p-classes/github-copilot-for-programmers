@@ -1,13 +1,13 @@
 === Java: Equivalent of C# Like Properties
 
-https://stackoverflow.com/questions/2701077/does-java-have-properties-that-work-the-same-way-properties-work-in-c[Does Java Support C# styles Class Properties?]
+link:https://stackoverflow.com/questions/2701077/does-java-have-properties-that-work-the-same-way-properties-work-in-c[Does Java Support C# styles Class Properties?,window=_blank]
 
 To run the following code, please create a "Hello World" style Java project 
-using Visual Studio or JetBrain's IntelliJ.
+using Visual Studio Code or JetBrains IntelliJ IDEA.
 
-. Open the Java file with the `main` function. Update the code in the `Main` class 
-   with this code.
+. Open the Java file with the `public static void main` function. Update the code in the `Main` class with this code.
 
+.Main.java
 [%linenums,java]
 ----
 class Person {
@@ -36,13 +36,14 @@ The code should fail to compile. Why? Well the code is attempting to use C# styl
 [start=2]
 . Highlight the code in the `main` function, right click, mouse over Copilot, and ask Copilot to fix the code in the context menu.
 
+.Copilot Chat Prompt
 [source,text]
 /fix I am a C# developer using Java. I know C# and Java are similar. So I have tried to use C# class properties but this does not appear to work in Java. What is the correct alternative in Java that accomplishes the same goal?
-
 
 [start=3]
 . Copilot should offer a fix similar to this:
 
+.Copilot Proposed Change: Main.java
 [source,java]
 ----
 class Person {

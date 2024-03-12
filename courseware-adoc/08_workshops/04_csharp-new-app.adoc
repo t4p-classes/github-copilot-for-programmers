@@ -1,0 +1,573 @@
+=== Build a Calculator with C#
+
+==== Setup
+
+To complete the following workshop, please create a C# console application using .NET 8, with top-level statements enabled.
+
+==== Part 1: Basic Calculator Steps
+
+Note: For Part 1, sample Copilot chat prompts and suggested code are provided. For Part 2 and Part 3, you will need to create your own chat prompts and use the suggestions from Copilot to update the code.
+
+. Create the new project and open the project with Visual Studio (not Visual Studio Code).
+. Open Copilot Chat, and explain to Copilot that you want to build a console-based calculator in C#. Ask Copilot to help you write the code. Start by asking Copilot to write a command loop that will keep asking the user for input until the user types "exit". For any command other than "exit", print the command in the console. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+I am working on new C# console-based Calculator program. I will need some help writing the code. Can you please create a basic command loop that will ask users for a new command until the user types "exit". When the user types "exit" the program should end. For any other comment, please display the command in the console before asking for the next command. I am using top-level statements in the Program.cs file.
+
+.Copilot Suggested Code
+[%linenums,c#]
+----
+string command = "";
+while (command != "exit")
+{
+    Console.Write("Enter a command: ");
+    command = Console.ReadLine();
+    if (command != "exit")
+    {
+        Console.WriteLine("You entered: " + command);
+    }
+}
+----
+
+[start=3]
+. Next, ask Copilot to track the current calculator state in a variable named "result". Ask Copilot to initialize the variable to 0. Then, ask Copilot to add a new command to add a number to the result. When the user types "add 5", for example, the result should be updated to 5. If the user types "add 3", the result should be updated to 8. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Track current state of the calculator with a result variable initialized to 0. The result should be a floating point number. Also, please add one command for adding a number to the result. The command should display the new result after performing the add operation. The format of the command should be similar to this "add 3" which would then add 3 to the result and display the new result.
+
+.Copilot Suggested Code
+[%linenums,c#]
+----
+double result = 0;
+string command = "";
+while (command != "exit")
+{
+    Console.Write("Enter a command: ");
+    command = Console.ReadLine();
+    if (command.StartsWith("add "))
+    {
+        double numberToAdd;
+        if (double.TryParse(command.Substring(4), out numberToAdd))
+        {
+            result += numberToAdd;
+            Console.WriteLine("New result: " + result);
+        }
+        else
+        {
+            Console.WriteLine("Invalid number format.");
+        }
+    }
+    else if (command != "exit")
+    {
+        Console.WriteLine("You entered: " + command);
+    }
+}
+----
+
+[start=4]
+. Verify the code created so far works. Add a new command named "result" that will display the current result any time the users asks. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Add a command to display the current result. Also, if the user types an unrecognized command, please display an error message and allow the user to type another command.
+
+.Copilot Suggested Code
+[%linenums,c#]
+----
+double result = 0;
+string command = "";
+while (command != "exit")
+{
+    Console.Write("Enter a command: ");
+    command = Console.ReadLine();
+    if (command.StartsWith("add "))
+    {
+        double numberToAdd;
+        if (double.TryParse(command.Substring(4), out numberToAdd))
+        {
+            result += numberToAdd;
+            Console.WriteLine("New result: " + result);
+        }
+        else
+        {
+            Console.WriteLine("Invalid number format.");
+        }
+    }
+    else if (command == "result")
+    {
+        Console.WriteLine("Current result: " + result);
+    }
+    else if (command != "exit")
+    {
+        Console.WriteLine("Unrecognized command: " + command);
+    }
+}
+----
+
+[start=5]
+.The code is starting to get a bit long. Ask Copilot to help you refactor the code to make it more readable. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Please refactor the code to make it more readable. Perhaps, the code should be broken into functions or classes.
+
+.Copilot Suggested Code
+[%linenums,c#]
+----
+class Calculator
+{
+  private double result = 0;
+
+  public void Run()
+  {
+    string command = "";
+    while (command != "exit")
+    {
+      Console.Write("Enter a command: ");
+      command = Console.ReadLine();
+      ProcessCommand(command);
+    }
+  }
+
+  private void ProcessCommand(string command)
+  {
+    if (command.StartsWith("add "))
+    {
+      AddToResult(command);
+    }
+    else if (command == "result")
+    {
+      DisplayResult();
+    }
+    else if (command != "exit")
+    {
+      Console.WriteLine("Unrecognized command: " + command);
+    }
+  }
+
+  private void AddToResult(string command)
+  {
+    double numberToAdd;
+    if (double.TryParse(command.Substring(4), out numberToAdd))
+    {
+      result += numberToAdd;
+      Console.WriteLine("New result: " + result);
+    }
+    else
+    {
+      Console.WriteLine("Invalid number format.");
+    }
+  }
+
+  private void DisplayResult()
+  {
+    Console.WriteLine("Current result: " + result);
+  }
+}
+
+var calculator = new Calculator();
+calculator.Run();
+----
+
+The suggested code has a bug. Do you know what the bug is? Because we are using top-level statements, the code instantiating and running the Calculator must be located at the top of the file. Feel free to move the code to the top, or discuss with Copilot how to fix the bug.
+
+The fixed code looks like this:
+
+.Program.cs
+[%linenums,c#]
+----
+var calculator = new Calculator();
+calculator.Run();
+
+class Calculator
+/* reaming code */
+----
+
+[start=6]
+. Next, ask Copilot to add new commands for subtraction, multiplication, and division. Ensure there is the error handling for division by zero. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Please add commands for subtraction, multiplication, and division. Also, ensure there is error handling for division by zero.
+
+.Copilot Suggested Code
+[%linenums,c#]
+----
+var calculator = new Calculator();
+calculator.Run();
+
+class Calculator
+{
+  private double result = 0;
+
+  public void Run()
+  {
+    string command = "";
+    while (command != "exit")
+    {
+      Console.Write("Enter a command: ");
+      command = Console.ReadLine();
+      ProcessCommand(command);
+    }
+  }
+
+  private void ProcessCommand(string command)
+  {
+    if (command.StartsWith("add "))
+    {
+      PerformOperation(command, (a, b) => a + b);
+    }
+    else if (command.StartsWith("subtract "))
+    {
+      PerformOperation(command, (a, b) => a - b);
+    }
+    else if (command.StartsWith("multiply "))
+    {
+      PerformOperation(command, (a, b) => a * b);
+    }
+    else if (command.StartsWith("divide "))
+    {
+      PerformOperation(command, (a, b) => b != 0 ? a / b : throw new DivideByZeroException());
+    }
+    else if (command == "result")
+    {
+      DisplayResult();
+    }
+    else if (command != "exit")
+    {
+      Console.WriteLine("Unrecognized command: " + command);
+    }
+  }
+
+  private void PerformOperation(string command, Func<double, double, double> operation)
+  {
+    double number;
+    if (double.TryParse(command.Substring(command.IndexOf(' ') + 1), out number))
+    {
+      try
+      {
+        result = operation(result, number);
+        Console.WriteLine("New result: " + result);
+      }
+      catch (DivideByZeroException)
+      {
+        Console.WriteLine("Error: Division by zero.");
+      }
+    }
+    else
+    {
+      Console.WriteLine("Invalid number format.");
+    }
+  }
+
+  private void DisplayResult()
+  {
+    Console.WriteLine("Current result: " + result);
+  }
+}
+----
+
+If Copilot places the `Calculator` instantiation and `Run` method call at the bottom of the file, move it to the top of the `Program.cs` file.
+
+
+[start=7]
+. Finally, ask Copilot to add a command for clearing the result. When the user types "clear", the result should be reset to 0. Using the suggestions from Copilot, update the code.
+
+.Sample Copilot Chat Prompt
+[source,text]
+Please add a command for clearing the result. When the user types "clear", the result should be reset to 0.
+
+.Copilot Suggested Code
+[%linenums,c#]
+----
+var calculator = new Calculator();
+calculator.Run();
+
+class Calculator
+{
+  private double result = 0;
+
+  public void Run()
+  {
+    string command = "";
+    while (command != "exit")
+    {
+      Console.Write("Enter a command: ");
+      command = Console.ReadLine();
+      ProcessCommand(command);
+    }
+  }
+
+  private void ProcessCommand(string command)
+  {
+    if (command.StartsWith("add "))
+    {
+      PerformOperation(command, (a, b) => a + b);
+    }
+    else if (command.StartsWith("subtract "))
+    {
+      PerformOperation(command, (a, b) => a - b);
+    }
+    else if (command.StartsWith("multiply "))
+    {
+      PerformOperation(command, (a, b) => a * b);
+    }
+    else if (command.StartsWith("divide "))
+    {
+      PerformOperation(command, (a, b) => b != 0 ? a / b : throw new DivideByZeroException());
+    }
+    else if (command == "result")
+    {
+      DisplayResult();
+    }
+    else if (command == "clear")
+    {
+      ClearResult();
+    }
+    else if (command != "exit")
+    {
+      Console.WriteLine("Unrecognized command: " + command);
+    }
+  }
+
+  private void PerformOperation(string command, Func<double, double, double> operation)
+  {
+    double number;
+    if (double.TryParse(command.Substring(command.IndexOf(' ') + 1), out number))
+    {
+      try
+      {
+        result = operation(result, number);
+        Console.WriteLine("New result: " + result);
+      }
+      catch (DivideByZeroException)
+      {
+        Console.WriteLine("Error: Division by zero.");
+      }
+    }
+    else
+    {
+      Console.WriteLine("Invalid number format.");
+    }
+  }
+
+  private void DisplayResult()
+  {
+    Console.WriteLine("Current result: " + result);
+  }
+
+  private void ClearResult()
+  {
+    result = 0;
+    Console.WriteLine("Result cleared.");
+  }
+}
+----
+
+If Copilot places the `Calculator` instantiation and `Run` method call at the bottom of the file, move it to the top of the `Program.cs` file.
+
+==== Part 2: Calculator History Steps
+
+Note: For Part 2, the steps are listed, but no sample prompts or code are provided. You will need to create your own chat prompts and use the suggestions from Copilot to update the code.
+
+. Ask Copilot to track the history of all commands entered by the user. When the user types "history", the console should display all the commands entered so far. Using the suggestions from Copilot, update the code.
+. Add a command to remove a history entry from the list of commands. When the user types "remove 3", for example, the third command should be removed from the history. Using the suggestions from Copilot, update the code.
+. Ask Copilot how to modify the code to display the result based upon the `history` list not the `result` variable. Remove the `result` variable from the code. Using the suggestions from Copilot, update the code.
+
+Note: The solution to part 2 is located at the of this workshop.
+
+==== Part 3: History File Operations Steps
+
+Note: For Part 3, a user story describes your task. Complete the user story using your AI pair-programming skills. Unlike Part 1 and 2, there is no solution provided for Part 3. Good luck!
+
+.User Story: Persist and Reload Calculator Command History
+----
+As a user of the calculator application, I want the ability to persist the history of my calculator commands to a file and reload those commands from the file back into the calculator. This will allow me to save my calculation history for future reference and easily restore my previous calculations when needed.
+
+Acceptance Criteria:
+1. The calculator application should provide an option to save the command history to a file.
+   - The user should be able to specify the location and name of the file to save the command history.
+   - The command history should be saved in JSON.
+   - The user should receive confirmation that the command history has been successfully saved to the file.
+
+2. The calculator application should provide an option to load a previously saved command history file.
+   - The user should be able to select the file containing the command history to be loaded.
+   - The application should validate the file format and ensure that it contains valid command history data.
+   - If the file is valid, the command history should be loaded into the calculator, replacing any existing command history.
+   - The user should receive confirmation that the command history has been successfully loaded from the file.
+
+3. The loaded command history should be accessible and usable within the calculator.
+   - The user should be able to view the loaded command history, including all previous commands and their results.
+   - The user should be able to navigate through the loaded command history, similar to the existing functionality for navigating the command history within the calculator.
+   - The user should be able to execute commands from the loaded command history, as if they were entered manually.
+
+4. Do not worry about implementing error handling for reading and writing to the file.
+----
+
+==== Solution for Part 2
+
+.Copilot Chat Prompt #1
+[source,text]
+Enhance the application to remember only the history of math commands (add, subtract, multiply, divide) typed by the user. Each command in the history should remember the command name and the number entered by the user. Also, include a new command named "history" that will display the history of math operations. The clear command should clear the history.
+
+.Copilot Chat Prompt #2
+[source,text]
+Enhance the code to remove an entry from the history using a new command named "remove". The structure for the command is "remove 3" where 3 is the index of the command to remove. If there is no command at that index, please display an error message and allow the user to enter another command.
+
+.Copilot Chat Prompt #3
+[source,text]
+Remove the result variable, and calculate the result using the history of math commands.
+
+.Final Code Solution to Part 2
+[%linenums,c#]
+----
+var calculator = new Calculator();
+calculator.Run();
+
+class Calculator
+{
+  private List<(string operation, double number)> commandHistory = new List<(string operation, double number)>();
+
+  public void Run()
+  {
+    string command = "";
+    while (command != "exit")
+    {
+      Console.Write("Enter a command: ");
+      command = Console.ReadLine();
+      ProcessCommand(command);
+    }
+  }
+
+  private void ProcessCommand(string command)
+  {
+    if (command.StartsWith("add "))
+    {
+      PerformOperation(command, (a, b) => a + b);
+    }
+    else if (command.StartsWith("subtract "))
+    {
+      PerformOperation(command, (a, b) => a - b);
+    }
+    else if (command.StartsWith("multiply "))
+    {
+      PerformOperation(command, (a, b) => a * b);
+    }
+    else if (command.StartsWith("divide "))
+    {
+      PerformOperation(command, (a, b) => b != 0 ? a / b : throw new DivideByZeroException());
+    }
+    else if (command == "result")
+    {
+      DisplayResult();
+    }
+    else if (command == "clear")
+    {
+      ClearResult();
+    }
+    else if (command == "history")
+    {
+      DisplayHistory();
+    }
+    else if (command.StartsWith("remove "))
+    {
+      RemoveCommand(command);
+    }
+    else if (command != "exit")
+    {
+      Console.WriteLine("Unrecognized command: " + command);
+    }
+  }
+
+  private void PerformOperation(string command, Func<double, double, double> operation)
+  {
+    double number;
+    if (double.TryParse(command.Substring(command.IndexOf(' ') + 1), out number))
+    {
+      try
+      {
+        commandHistory.Add((command.Substring(0, command.IndexOf(' ')), number));
+        Console.WriteLine("New command added: " + command);
+      }
+      catch (DivideByZeroException)
+      {
+        Console.WriteLine("Error: Division by zero.");
+      }
+    }
+    else
+    {
+      Console.WriteLine("Invalid number format.");
+    }
+  }
+
+  private void DisplayResult()
+  {
+    double result = 0;
+    foreach (var command in commandHistory)
+    {
+      switch (command.operation)
+      {
+        case "add":
+          result += command.number;
+          break;
+        case "subtract":
+          result -= command.number;
+          break;
+        case "multiply":
+          result *= command.number;
+          break;
+        case "divide":
+          if (command.number != 0)
+          {
+            result /= command.number;
+          }
+          else
+          {
+            Console.WriteLine("Error: Division by zero in history.");
+            return;
+          }
+          break;
+      }
+    }
+    Console.WriteLine("Current result: " + result);
+  }
+
+  private void ClearResult()
+  {
+    commandHistory.Clear();
+    Console.WriteLine("History cleared.");
+  }
+
+  private void DisplayHistory()
+  {
+    Console.WriteLine("Command history:");
+    foreach (var command in commandHistory)
+    {
+      Console.WriteLine($"{command.operation} {command.number}");
+    }
+  }
+
+  private void RemoveCommand(string command)
+  {
+    int index;
+    if (int.TryParse(command.Substring(7), out index))
+    {
+      if (index >= 0 && index < commandHistory.Count)
+      {
+        commandHistory.RemoveAt(index);
+        Console.WriteLine("Command removed from history.");
+      }
+      else
+      {
+        Console.WriteLine("Error: No command at that index.");
+      }
+    }
+    else
+    {
+      Console.WriteLine("Invalid index format.");
+    }
+  }
+}
+----

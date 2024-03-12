@@ -1,0 +1,53 @@
+=== Java: Coding Conventions
+
+To run the following code, please create a "Hello World" style Java project 
+using Visual Studio Code or JetBrains IntelliJ IDEA.
+
+. Open the Java file with the `public static void main` function. Update the code in the `Main` class with this code. Rename the `Main.java` file to `main.java` to compile and run this code.
+
+.main.java
+[%linenums,java]
+----
+public class main {
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 10;
+        int z = x + y;
+        System.out.println("The sum is: " + z);
+    }
+}
+----
+
+[start=2]
+. Highlight the code in the `main` class, right-click, mouse over Copilot, and ask Copilot to fix the code in the context menu.
+
+.Copilot Chat Prompt
+[source,text]
+/fix Please update the code to use common Java coding conventions. As part of the refactoring, please configure constants, refactor code into methods, and use meaningful variable names.
+
+[start=3]
+. Copilot should offer a fix similar to this:
+
+.Copilot Proposed Change: Main.java
+[source,java]
+----
+public class Main {
+    public static void main(String[] args) {
+        printSumOfNumbers();
+    }
+
+    private static void printSumOfNumbers() {
+        final int FIRST_NUMBER = 5;
+        final int SECOND_NUMBER = 10;
+        int sum = addNumbers(FIRST_NUMBER, SECOND_NUMBER);
+        System.out.println("The sum is: " + sum);
+    }
+
+    private static int addNumbers(int firstNumber, int secondNumber) {
+        return firstNumber + secondNumber;
+    }
+}
+----
+
+[start=4]
+. Accept the fix and run the code. The code should run without errors.

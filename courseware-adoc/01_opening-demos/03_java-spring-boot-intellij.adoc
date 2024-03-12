@@ -1,0 +1,291 @@
+=== Demo: Java Spring REST API with IntelliJ IDEA
+
+This is a demo to show how to use GitHub Copilot to help you write a new Java Spring Boot REST API application. These are suggested prompts to use with GitHub Copilot. Feel free modify them or add additional prompts to get the desired results.
+
+. Install the GitHub Copilot Plugin for IntelliJ IDEA. Optionally, disable the JetBrains AI plugin to avoid conflicts with GitHub Copilot.
+. Open IntelliJ IDEA, and create a new project with the following options:
+
+- Generator: Spring Initializr
+- Name: DemoWebApi
+- Group: com.training4programmers
+- Language: Java
+- Type: Maven
+- Java Version 21 (or latest)
+
+Click `Next`.  Under `Dependencies`, under the `Web` category, select `Spring Web`. Click `Create`. A new Spring Web Project will be created.
+
+[start=3]
+. On the right-side activity bar, open the GitHub Copilot chat panel. Also, ensure the Java file `DemoWebApiApplication.java` located in the `src/main/java/com.training4programmers.demowebapi` directory is open. GitHub Copilot will only use files opened in the editor when formulating prompts to the GitHub Copilot service to generate suggestions.
+. Let's add a new "Hello, World!" REST API endpoint. In the Copilot chat window, type the following prompt:
+
+.Copilot Chat Prompt
+[source,text]
+----
+I need to implement a Hello World REST API endpoint accessible on the path "/hello". How do I add this to my project?
+----
+
+.Copilot Chat Response
+----
+To implement a Hello World REST API endpoint in your Spring Boot application, you need to create a new controller class. This class will handle the HTTP requests coming to the "/hello" path.
+
+Here's a step-by-step plan:
+
+1. Create a new class named `HelloController` in the same package as your main application class.
+2. Annotate this class with `@RestController` to indicate that it's a controller class.
+3. Define a method named `helloWorld` that will handle GET requests to the "/hello" path. Annotate this method with `@GetMapping("/hello")`.
+4. This method should return a `String` that says "Hello, World!".
+
+Here's the code for the `HelloController` class:
+----
+
+.HelloController.java
+[%linenums,java]
+----
+package com.training4programmers.demowebapi;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+
+    @GetMapping("/hello")
+    public String helloWorld() {
+        return "Hello, World!";
+    }
+}
+----
+
+After adding this class to your project, you can start your application and access the endpoint at `http://localhost:8080/hello`. It will return the string "Hello, World!".
+
+[start=5]
+. Highlight the following code:
+
+.HelloController.java
+[%linenums,java]
+----
+@GetMapping("/hello")
+public String helloWorld() {
+    return "Hello, World!";
+}
+----
+
+Enter the following prompt in the Copilot chat window:
+
+.Copilot Chat Prompt
+[source,text]
+/test create a new unit test
+
+Copilot Chat will reply with something like this:
+
+.Copilot Chat Response
+[source,text]
+----
+To create a unit test for your HelloController class, you can use the JUnit and Mockito frameworks. Here's a step-by-step plan:
+
+1. Create a new Java class named HelloControllerTest in the com.training4programmers.demowebapi package under your test directory (usually src/test/java).
+2. Annotate this class with @RunWith(SpringRunner.class) to indicate that it should use Spring's testing support.
+3. Annotate this class with @WebMvcTest(HelloController.class) to indicate that it's a test for HelloController.
+4. Autowire a MockMvc instance. This class is the main entry point for server-side Spring MVC test support.
+5. Create a new test method named testHelloWorld that doesn't return anything (void).
+6. In this method, use the mockMvc.perform() method to send a GET request to the "/hello" path.
+7. Assert that the response status is OK and the content is "Hello, World!".
+
+Here is the code for the HelloControllerTest class:
+----
+
+.Copilot Proposed Change: HelloControllerTest.java
+[%linenums,java]
+----
+package com.training4programmers.demowebapi;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(HelloController.class)
+public class HelloControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    public void testHelloWorld() throws Exception {
+        mockMvc.perform(get("/hello"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Hello, World!"));
+    }
+
+}
+----
+
+After copying the suggested code into the new `HelloControllerTest.java` file, use the IntelliJ in-editor tooling (red light bulb) to install JUnit 4. Once installed, click the green arrow next to the unit test method to run the test. It should pass and verify that the `HelloController` class is working as expected.
+
+[start=6]
+. Type the following comment following the `helloWorld` method.
+
+.HelloController.java
+[%linenums,java]
+----
+@GetMapping("/hello")
+public String helloWorld() {
+    return "Hello, World!";
+}
+
+// GET /hello/{message}
+----
+
+After typing the comment, type `<ENTER>`, a suggestion should appear. Accept the suggestions to create the method. The new method should look similar to this.
+
+.HelloController.java
+[%linenums,java]
+----
+// GET /hello/{message}
+@GetMapping("/hello/{message}")
+public String helloMessage(String message) {
+    return "Hello, " + message + "!";
+}
+----
+
+[start=7]
+. Create a new controller to manage a list of color objects. In the Copilot chat window, type the following prompt:
+
+.Copilot Chat Prompt
+[source,text]
+I need a service to manage a list of color objects. Each color will have an id, a name, and a hexcode. Please generate a Color class, a service class to manage a list of colors, including adding, replacing, and deleting a color. In the constructor of the service class, initialize the list of colors with objects for red, green, and blue. Finally, create a REST API controller to manage the list of colors.
+
+.Copilot Proposed Change: Color.java
+[%linenums,java]
+----
+package com.training4programmers.demowebapi;
+
+public class Color {
+    private int id;
+    private String name;
+    private String hexCode;
+
+    public Color(int id, String name, String hexCode) {
+        this.id = id;
+        this.name = name;
+        this.hexCode = hexCode;
+    }
+
+    // getters and setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getHexCode() {
+        return hexCode;
+    }
+
+    public void setHexCode(String hexCode) {
+        this.hexCode = hexCode;
+    }
+}
+----
+
+.Copilot Proposed Change: ColorService.java
+[%linenums,java]
+----
+package com.training4programmers.demowebapi;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ColorService {
+    private List<Color> colors;
+
+    public ColorService() {
+        colors = new ArrayList<>();
+        colors.add(new Color(1, "Red", "#FF0000"));
+        colors.add(new Color(2, "Green", "#00FF00"));
+        colors.add(new Color(3, "Blue", "#0000FF"));
+    }
+
+    public List<Color> getColors() {
+        return colors;
+    }
+
+    public void addColor(Color color) {
+        colors.add(color);
+    }
+
+    public void replaceColor(int id, Color color) {
+        for (int i = 0; i < colors.size(); i++) {
+            if (colors.get(i).getId() == id) {
+                colors.set(i, color);
+                return;
+            }
+        }
+    }
+
+    public void deleteColor(int id) {
+        colors.removeIf(color -> color.getId() == id);
+    }
+}
+----
+
+.Copilot Proposed Change: ColorController.java
+[%linenums,java]
+----
+package com.training4programmers.demowebapi;
+
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/colors")
+public class ColorController {
+    private ColorService colorService;
+
+    public ColorController() {
+        this.colorService = new ColorService();
+    }
+
+    @GetMapping
+    public List<Color> getColors() {
+        return colorService.getColors();
+    }
+
+    @PostMapping
+    public void addColor(@RequestBody Color color) {
+        colorService.addColor(color);
+    }
+
+    @PutMapping("/{id}")
+    public void replaceColor(@PathVariable int id, @RequestBody Color color) {
+        colorService.replaceColor(id, color);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteColor(@PathVariable int id) {
+        colorService.deleteColor(id);
+    }
+}
+----
+
+Run the code, and load the endpoint `http://localhost:8080/colors` in a web browser. You should see a JSON array of color objects.
+
+
