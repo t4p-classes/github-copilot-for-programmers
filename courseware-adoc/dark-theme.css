@@ -2052,13 +2052,19 @@ pre.pygments.highlight {
   font-size: 0.95rem;
 }
 
-code:not(pre > code) {
+code:not(pre > code), code:not(pre > code) > a {
   border: 1px solid #3f65b0;
   background-color: #3f65b0;
   color: white;
   border-radius: 4px;
   padding: 2px;
   margin: 1px;
+}
+
+code:not(pre > code) > a:visited, 
+code:not(pre > code) > a:active,
+code:not(pre > code) > a:hover {
+  color: white;
 }
 
 .imageblock * {
