@@ -2060,3 +2060,17 @@ code:not(pre > code) {
   padding: 2px;
   margin: 1px;
 }
+
+.imageblock * {
+  border-image-width: 0;
+  border: 0;
+}
+
+
+.paragraph > p > span.image > img {
+  float: right;
+}
+
+.sectionbody {
+  overflow: auto;
+}
