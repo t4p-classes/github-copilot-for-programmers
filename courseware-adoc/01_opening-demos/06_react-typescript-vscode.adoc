@@ -373,7 +373,7 @@ const Calculator: React.FC = () => {
 export default Calculator;
 ----
 
-This concludes the demo. You have created a new React TypeScript Web App project with a calculator component. You used GitHub Copilot to help you write the code and to help you understand the code. You also used GitHub Copilot to help you find a safer alternative to the `eval` function. You have also learned how to use GitHub Copilot to help you with the terminal commands. You can now use this project as a starting point for your own React TypeScript Web App projects. You can also use GitHub Copilot to help you with other programming tasks and to learn new programming concepts. GitHub Copilot is a powerful tool that can help you become a better programmer.
+This concludes the demo. You have created a new React TypeScript Web App project with a calculator component. You used GitHub Copilot to help you write and understand the code. You also used GitHub Copilot to help you find a safer alternative to the `eval` function. You have also learned how to use GitHub Copilot to help you with the terminal commands. You can now use this project as a starting point for your own React TypeScript Web App projects. You can also use GitHub Copilot to help you with other programming tasks and to learn new programming concepts. GitHub Copilot is a powerful tool that can help you become a better programmer.
 
 If you want to dive deeper, use Copilot to help you with the following tasks:
 
