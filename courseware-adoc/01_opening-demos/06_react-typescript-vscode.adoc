@@ -160,7 +160,7 @@ The HTML-like syntax you see is called JSX (JavaScript XML). It's a syntax exten
 Copilot explains the React library and explains the JSX syntax. Copilot does a lot more than merely suggest code. It can explain programming concepts, developer tools, programming languages, and the specifics of libraries and frameworks.
 
 [start=9]
-. Let's create new React component to serve as the calculator. In the `src` folder, create a new file called `Calculator.tsx`. Click the stars (CTRL+I or CMD+I) to display an in-editor file tab Copilot dialog. Type the following prompt in the Copilot Chat panel.
+. Let's create new React component to serve as the calculator. In the `src` folder, create a new file called `Calculator.tsx`. Click the stars (`<CTRL> + i` or `<CMD> + i`) to display an in-editor file tab Copilot dialog. Type the following prompt in the Copilot Chat panel.
 
 .Copilot Chat Prompt
 [source,text]

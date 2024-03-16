@@ -2051,3 +2051,12 @@ pre.pygments.highlight {
 .listingblock pre, .listingblock pre[class] {
   font-size: 0.95rem;
 }
+
+code:not(pre > code) {
+  border: 1px solid #3f65b0;
+  background-color: #3f65b0;
+  color: white;
+  border-radius: 4px;
+  padding: 2px;
+  margin: 1px;
+}
