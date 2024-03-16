@@ -20,3 +20,5 @@ include::03_java-spring-boot-intellij.adoc[]
 include::04_python-console-vscode.adoc[]
 
 include::05_csharp-aspnetmvc-webapi.adoc[]
+
+include::06_react-typescript-vscode.adoc[]

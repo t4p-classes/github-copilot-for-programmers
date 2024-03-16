@@ -1,0 +1,382 @@
+=== Demo: React TypeScript Web App with Visual Studio Code
+
+This demo shows how to use GitHub Copilot to help you write a new React TypeScript Web App application with Visual Studio Code. The prompts below are suggestions to help you explore GitHub Copilot; please feel free to modify them.
+
+. Open Visual Studio Code. Ensure you have the GitHub Copilot extension installed. If not, you can install it from the Visual Studio Code Marketplace. Once installed, you will need to sign in with your GitHub account.
+. On the Activity Bar, click the Chat/Message looking icon. Then click on the "GitHub Copilot Chat" panel.
+. We will assume we know nothing about React or building web apps with modern JavaScript frameworks and libraries. We will assume we have some general programming experience, some TypeScript experience, and know what web programming is. We will use GitHub Copilot to help us write a new React TypeScript Web App application.
+. Type the following prompt in the GitHub Copilot Chat panel.
+
+.Copilot Chat Prompt
+[source,text]
+My manager asked me to create a new client-side web application using TypeScript to build a calculator. Are there any TypeScript libraries or frameworks that can help me build a client-side web application? Which one would you recommend? My manager told me to use something popular, with a large a community, and is component-based. I am not sure what component-based means, but that is what my manager was told me.
+
+Most likely, Copilot will respond with something similar to this.
+
+.Copilot Chat Response
+----
+Yes, there are several popular TypeScript libraries and frameworks that can help you build a client-side web application. Given your manager's requirements, I would recommend using React with TypeScript.
+
+React is a popular JavaScript library for building user interfaces, particularly for single-page applications. It's used for handling the view layer for web and mobile apps. React allows you to design simple views for each state in your application, and it will efficiently update and render the right components when your data changes. React's component-based architecture means you build your UI out of small, reusable pieces.
+
+React has a large community, which means you'll find a lot of resources, tutorials, and third-party libraries that can help you. It's maintained by Facebook and a community of individual developers and companies.
+----
+
+It is possible, that Copilot will recommend something other than React with TypeScript. No worries, if it does that is ok, we will still use React with TypeScript for this demo.
+
+[start=5]
+. In addition to the suggestion to use React, Copilot probably gave you some example code on how to create a React component.
+
+.Copilot Chat Response
+[%linenums,typescript]
+----
+import React, { Component } from 'react';
+
+interface AppState {
+  result: number;
+}
+
+interface AppProps {
+  // define any props here
+}
+
+class Calculator extends Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+    this.state = {
+      result: 0,
+    };
+  }
+
+  // define your methods here
+
+  render() {
+    return (
+      <div>
+        {/* Your UI here */}
+      </div>
+    );
+  }
+}
+
+export default Calculator;
+----
+
+This code demo is helpful, but React requires a project configuration before we can start creating components. Let's ask Copilot about this.
+
+.Copilot Chat Prompt
+[source,text]
+React sounds great. I have heard that these JavaScript/TypeScript web projects require a lot of configuration. Is there a way to create a new React TypeScript Web App project with a single command? If so, what is the command?
+
+Most likely, Copilot will respond with something similar to this.
+
+.Copilot Chat Response
+----
+Yes, there is a way to create a new React TypeScript project with a single command. You can use Create React App, which is a command line tool that scaffolds a new React project with a lot of sensible defaults and configurations out of the box.
+----
+
+There is a problem with this response. Create React App is no longer supported. One challenge with Copilot is that it is not always aware of the latest changes to specific tools and languages. Whenever using a tool suggested by Copilot it is best practice to verify the tool is still used and it is even better if you look for related tools. Let's see if Copilot can help us find another tool.
+
+.Copilot Chat Prompt
+[source,text]
+I spoke to a friend to double check whether Create React App is still the best way to create a new React TypeScript Web App project. My friend told me that Create React App is no longer supported. Are there any other tools that can help me create a new React TypeScript Web App project with a single command? If so, what is the command?
+
+Most likely, Copilot will respond with something similar to this.
+
+.Copilot Chat Response
+----
+Yes, there is another popular tool called Vite that you can use to create a new React TypeScript project. Vite is a build tool and development server created by Evan You, the creator of Vue.js. It offers faster and leaner development for modern web projects.
+----
+
+As of the writing of this demo, Vite is a popular tool for creating new React TypeScript Web App projects. Let's use Vite to create a new React TypeScript Web App project. This is a much better choice.
+
+[start=6]
+. Most likely when Copilot suggested Vite, it offered some instructions on how to use it to create a React with TypeScript application. Compare the instructions to the sample instructions below.
+
+.Copilot Chat Response
+[%linenums,typescript]
+----
+npx create-vite my-app --template react-ts
+----
+
+Open the terminal window in VS Code (View > Terminal) and run the command `npx create-vite my-app --template react-ts` to create a new React TypeScript Web App project Replace `my-app` with the name of our project which we will call `calc-app`. This command will create a new directory called `calc-app` and scaffold a new React TypeScript Web App project inside it.
+
+.Command Line: Create a new React TypeScript Web App project with Vite
+[%linenums,console]
+----
+npx create-vite calc-app --template react-ts
+----
+
+After creating the project, follow the instructions to change into the folder and install the project dependencies with `npm install`.
+
+Next, use VS Code to open the `calc-app` folder. You can do this by clicking on the "Open Folder" button in the welcome screen or by clicking on "File" > "Open Folder" in the menu bar.
+
+[start=7]
+. Open the terminal window and run the following command to start the React application. Open a web browser, browse the URL, and view the page.
+
+
+.Command Line: Run the React Application
+[%linenums,console]
+----
+npm run dev
+----
+
+[start=8]
+. Review the project structure and you will see a lot of files have been created. The most important files are the `src` folder and the `package.json` file. The `src` folder contains the source code for the React application. The `package.json` file contains the project dependencies and scripts to run the project. Do not worry about the other files for now.
+. In the `src` folder open the `main.tsx` file. It will look similar to this.
+
+.File: src/main.tsx
+[%linenums,typescript]
+----
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+----
+
+Highlight the code that calls the `ReactDOM.createRoot` method. Highlight the entire function call, all five lines.
+
+In the Copilot Chat panel, type the following prompt.
+
+.Copilot Chat Prompt
+[source,text]
+/explain What is this code doing? Also, what is this odd-looking HTML syntax mixed with the TypeScript code? I thought TypeScript was a superset of JavaScript, not HTML.
+
+Most likely, Copilot will respond with something similar to this.
+
+.Copilot Chat Response
+----
+This code is part of a React application written in TypeScript. It's responsible for rendering the main App component into a DOM element with the id 'root'.
+
+The HTML-like syntax you see is called JSX (JavaScript XML). It's a syntax extension for JavaScript, used by libraries like React, to describe what the UI should look like. TypeScript supports JSX syntax as well, hence you see it in this TypeScript file.
+----
+
+Copilot explains the React library and explains the JSX syntax. Copilot does a lot more than merely suggest code. It can explain programming concepts, developer tools, programming languages, and the specifics of libraries and frameworks.
+
+[start=9]
+. Let's create new React component to serve as the calculator. In the `src` folder, create a new file called `Calculator.tsx`. Click the stars (CTRL+I or CMD+I) to display an in-editor file tab Copilot dialog. Type the following prompt in the Copilot Chat panel.
+
+.Copilot Chat Prompt
+[source,text]
+Define a component that represents a calculator. It should have a button for each digit, a button for each operator (+, -, *, /), and a display for the result.
+
+The response from Copilot will be similar to this.
+
+.Copilot Chat Response
+[%linenums,typescript]
+----
+import React, { useState } from 'react';
+
+const Calculator: React.FC = () => {
+  const [displayValue, setDisplayValue] = useState('');
+
+  const handleButtonClick = (value: string) => {
+    setDisplayValue(displayValue + value);
+  };
+
+  const handleCalculate = () => {
+    try {
+      const result = eval(displayValue);
+      setDisplayValue(result.toString());
+    } catch (error) {
+      setDisplayValue('Error');
+    }
+  };
+
+  const clearDisplay = () => {
+    setDisplayValue('');
+  };
+
+  return (
+    <div>
+      <input type="text" value={displayValue} readOnly />
+      <div>
+        <button onClick={() => handleButtonClick('1')}>1</button>
+        <button onClick={() => handleButtonClick('2')}>2</button>
+        <button onClick={() => handleButtonClick('3')}>3</button>
+        <button onClick={() => handleButtonClick('+')}>+</button>
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('4')}>4</button>
+        <button onClick={() => handleButtonClick('5')}>5</button>
+        <button onClick={() => handleButtonClick('6')}>6</button>
+        <button onClick={() => handleButtonClick('-')}>-</button>
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('7')}>7</button>
+        <button onClick={() => handleButtonClick('8')}>8</button>
+        <button onClick={() => handleButtonClick('9')}>9</button>
+        <button onClick={() => handleButtonClick('*')}>*</button>
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('0')}>0</button>
+        <button onClick={() => handleCalculate()}>=</button>
+        <button onClick={() => clearDisplay()}>C</button>
+        <button onClick={() => handleButtonClick('/')}>/</button>
+      </div>
+    </div>
+  );
+};
+
+export default Calculator;
+----
+
+[start=10]
+. Open the `App.tsx` file and import the `Calculator` component. Then use the `Calculator` component in the `App` component. The `App.tsx` file will look similar to this. If you are not use how to import the `Calculator` component, ask Copilot for help.
+
+.Screenshot of Asking Copilot for Help
+image:images/github-copilot-replace-app-content-with-calculator-component.png["Github Copilot Replace App Content with the Calculator Component"]
+
+.Screenshot of Copilot Suggested Change
+image:images/github-copilot-suggested-app-content-replacement.png["Github Copilot Replace App Content with the Calculator Component"]
+
+Copilot attempted to figure where to place the Calculator component within the current content structure of the App component. This may or may not be what you want. Let's ask to replace ALL of the content.
+
+.Copilot Chat Prompt
+[source,text]
+Please replace ALL the JSX in the App Component with a call to the Calculator component. The only JSX element in the App Component should be the Calculator. Also, please move the import statement for the Calculator component to the top of the file.
+
+[start=11]
+. Accept the change offered by Copilot. Clean up any extra code from the original source. The final `App.tsx` file will look similar to this.
+
+.File: src/App.tsx
+[%linenums,typescript]
+----
+import './App.css'
+import Calculator from './Calculator'
+
+function App() {
+  return (
+    <>
+      <Calculator />
+    </>
+  )
+}
+
+export default App
+----
+
+The web page should automatically refresh and you should see the calculator. You can now use the calculator to perform simple arithmetic operations.
+
+[start=12]
+. The calculator works, but there is a problem. There is a function call to `eval` in the `Calculator` component. The `eval` function is a security risk and should not be used. Let's ask Copilot for help to fix this.
+
+In the `Calculator.tsx` file, highlight the `eval` function call, right-click, and select `Fix This` under the `Copilot` submenu. Add the following text to the `/fix` Copilot command.
+
+.Copilot Chat Prompt
+[source,text]
+/fix Please replace the call to the eval function with a safer alternative. Is there a safer third-party NPM package that could help me with this?
+
+You may get a suggestion like this:
+
+.Screenshot of Copilot MathJS Suggestion
+image:images/github-copilot-suggested-app-content-replacement.png["Github Copilot Suggest MathJS as a Safer Alternative"]
+
+Accept the solution and clean up the file. Make sure imports are at the top and smal fixes. Remember, we do have some TypeScript experience. We can make sure the code is correct.
+
+[start=13]
+.How do we install the MathJS package? Ask Copilot for help.
+
+Stop the web application, `<CTRL+C>` in the terminal. Ensure the terminal panel is still open. Then type the following prompt in the Copilot Chat panel.
+
+.Copilot Chat Prompt
+[source,text]
+@terminal How do I install the MathJS NPM package?
+
+Most likely, Copilot will respond with something similar to this.
+
+.Copilot Chat Response
+[source,console]
+----
+npm install mathjs
+----
+
+Click the Terminal Copy icon in the chat, and run the command. 
+
+[start=14]
+. Once the package is installed, start the web app again.
+
+.Command Line: Run the React Application
+[%linenums,console]
+----
+npm run dev
+----
+
+In the web browser, verify the new calculator solution works.
+
+The final `Calculator.tsx` file will look similar to this.
+
+.File: src/Calculator.tsx
+[%linenums,typescript]
+----
+import React, { useState } from 'react';
+import { evaluate } from 'mathjs';
+
+const Calculator: React.FC = () => {
+  const [displayValue, setDisplayValue] = useState('');
+
+  const handleButtonClick = (value: string) => {
+    setDisplayValue(displayValue + value);
+  };
+
+
+  const handleCalculate = () => {
+    try {
+      const result = evaluate(displayValue);
+      setDisplayValue(result.toString());
+    } catch (error) {
+      setDisplayValue('Error');
+    }
+  };
+
+  const clearDisplay = () => {
+    setDisplayValue('');
+  };
+
+  return (
+    <div>
+      <input type="text" value={displayValue} readOnly />
+      <div>
+        <button onClick={() => handleButtonClick('1')}>1</button>
+        <button onClick={() => handleButtonClick('2')}>2</button>
+        <button onClick={() => handleButtonClick('3')}>3</button>
+        <button onClick={() => handleButtonClick('+')}>+</button>
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('4')}>4</button>
+        <button onClick={() => handleButtonClick('5')}>5</button>
+        <button onClick={() => handleButtonClick('6')}>6</button>
+        <button onClick={() => handleButtonClick('-')}>-</button>
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('7')}>7</button>
+        <button onClick={() => handleButtonClick('8')}>8</button>
+        <button onClick={() => handleButtonClick('9')}>9</button>
+        <button onClick={() => handleButtonClick('*')}>*</button>
+      </div>
+      <div>
+        <button onClick={() => handleButtonClick('0')}>0</button>
+        <button onClick={() => handleCalculate()}>=</button>
+        <button onClick={() => clearDisplay()}>C</button>
+        <button onClick={() => handleButtonClick('/')}>/</button>
+      </div>
+    </div>
+  );
+};
+
+export default Calculator;
+----
+
+This concludes the demo. You have created a new React TypeScript Web App project with a calculator component. You used GitHub Copilot to help you write the code and to help you understand the code. You also used GitHub Copilot to help you find a safer alternative to the `eval` function. You have also learned how to use GitHub Copilot to help you with the terminal commands. You can now use this project as a starting point for your own React TypeScript Web App projects. You can also use GitHub Copilot to help you with other programming tasks and to learn new programming concepts. GitHub Copilot is a powerful tool that can help you become a better programmer.
+
+If you want to dive deeper, use Copilot to help you with the following tasks:
+
+* Explain the `useState` hook in React.
+* Enhance the application to show a history of calculations.
+* Add additional math operations.
