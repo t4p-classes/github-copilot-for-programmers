@@ -1,0 +1,139 @@
+=== Java: Concurrency Issues
+
+. Here's an example of Java code with a complex bug involving concurrency issues:
+
+[%linenums,java]
+----
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+public class Main {
+    private int counter = 0;
+
+    public static void main(String[] args) {
+        Main example = new Main();
+        example.runTest();
+    }
+
+    public void runTest() {
+        ExecutorService executor = Executors.newFixedThreadPool(20);
+
+        for (int i = 0; i < 1000; i++) {
+            executor.submit(this::incrementCounter);
+        }
+
+        executor.shutdown();
+
+        try {
+            executor.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Final counter value: " + counter);
+    }
+
+    private void incrementCounter() {
+        int current = counter;
+        counter = current + 1;
+    }
+}
+----
+
+[start=2]
+. Enter the following prompt into GitHub Copilot chat.
+
+[source,text]
+The counter is not being incremented correctly.
+
+[start=3]
+. GitHub Copilot will probably suggest adding `synchronized` to the `incrementCounter` method. However, this will not solve the problem.
+
+[%linenums,java]
+----
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+public class Main {
+    private int counter = 0;
+
+    public static void main(String[] args) {
+        Main example = new Main();
+        example.runTest();
+    }
+
+    public void runTest() {
+        ExecutorService executor = Executors.newFixedThreadPool(20);
+
+        for (int i = 0; i < 1000; i++) {
+            executor.submit(this::incrementCounter);
+        }
+
+        executor.shutdown();
+
+        try {
+            executor.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Final counter value: " + counter);
+    }
+
+    private synchronized void incrementCounter() {
+        int current = counter;
+        counter = current + 1;
+    }
+}
+----
+
+[start=4]
+. Is `synchronized` the correct solution to the problem? Are there other options? Ask Copilot for suggestions.
+
+[source,text]
+Is synchronized the correct solution to the problem? Are there other options?
+
+[start=5]
+. GitHub Copilot may suggest using an `AtomicInteger` instead of an `int` for the `counter` field. This is the correct solution to the problem.
+
+[%linenums,java]
+----
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Main {
+    private AtomicInteger counter = new AtomicInteger(0);
+
+    public static void main(String[] args) {
+        Main example = new Main();
+        example.runTest();
+    }
+
+    public void runTest() {
+        ExecutorService executor = Executors.newFixedThreadPool(20);
+
+        for (int i = 0; i < 1000; i++) {
+            executor.submit(this::incrementCounter);
+        }
+
+        executor.shutdown();
+
+        try {
+            executor.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Final counter value: " + counter.get());
+    }
+
+    private void incrementCounter() {
+        int current = counter.getAndIncrement();
+    }
+}
+----
+

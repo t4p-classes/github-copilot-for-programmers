@@ -22,6 +22,10 @@ include::02_java/01_incorrect-string-concat.adoc[]
 
 include::02_java/02_equality-confusion.adoc[]
 
+include::02_java/03_concurrency_issues.adoc[]
+
+include::02_java/04_memory_issues.adoc[]
+
 include::03_python/01_convert-int-string.adoc[]
 
 include::03_python/02_key-error.adoc[]
