@@ -1,0 +1,106 @@
+=== Java: Outdated Code
+
+. Here's an example of a Java program written in an older version of Java (Java 7) that could be updated to a later version (Java 11).
+
+. Open the Java file with the `public static void main` function usually named `Main.class`. Update the code in the `Main` class with this code.
+
+.main.java
+[%linenums,java]
+----
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<String>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+
+        for (String fruit : list) {
+            System.out.println(fruit);
+        }
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Hello from a thread!");
+            }
+        };
+
+        new Thread(runnable).start();
+    }
+}
+----
+
+[start=2]
+. Highlight the code in the `Main` class, open Copilot chat, and type the following prompt.
+
+.Copilot Chat Prompt
+[source,text]
+/fix How can I improve this code to use the `forEach` method?
+
+[start=3]
+. Copilot should offer a fix similar to this:
+
+.Copilot Proposed Change: Main.java
+[source,java]
+----
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+
+        for (String fruit : list) {
+            System.out.println(fruit);
+        }
+
+        Runnable runnable = () -> System.out.println("Hello from a thread!");
+
+        new Thread(runnable).start();
+    }
+}
+----
+
+[start=4]
+. Accept the fix and run the code. The code should run without errors.
+
+[start=5]
+. Highlight the for-loop code, and type the following prompt in Copilot chat.
+
+.Copilot Chat Prompt
+[source,text]
+/fix Improve this code to use more Java syntax.
+
+[start=6]
+. Copilot should offer a fix similar to this:
+
+.Copilot Proposed Change: Main.java
+[source,java]
+----
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Orange");
+
+        list.forEach(fruit -> System.out.println(fruit));
+
+        Runnable runnable = () -> System.out.println("Hello from a thread!");
+
+        new Thread(runnable).start();
+    }
+}
+----
+
+[start=7]
+. Accept the fix and run the code. The code should run without errors.

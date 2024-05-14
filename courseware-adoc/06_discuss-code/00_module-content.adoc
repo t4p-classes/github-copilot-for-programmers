@@ -9,6 +9,10 @@ include::02_java/01_csharp-like-properties.adoc[]
 
 include::02_java/02_coding-conventions.adoc[]
 
+include::02_java/03_outdated_code.adoc[]
+
+include::02_java/04_poorly_written_code.adoc[]
+
 include::03_python/01_inefficient-loop.adoc[]
 
 include::04_csharp/01_pattern-matching.adoc[]

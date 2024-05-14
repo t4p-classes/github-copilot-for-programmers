@@ -1,0 +1,71 @@
+=== Java: Poorly Written Code
+
+. Here's an example of Java code that runs correctly but does not follow best practices.
+
+. Open the Java file with the `public static void main` function usually named `Main.class`. Update the code in the `Main` class with this code.
+
+.Main.java
+[%linenums,java]
+----
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // Initialize an ArrayList without specifying the type
+        ArrayList list = new ArrayList();
+        list.add("Hello");
+        list.add(123);
+        list.add(true);
+
+        // Access elements without casting
+        String greeting = (String) list.get(0);
+        int number = (int) list.get(1);
+        boolean flag = (boolean) list.get(2);
+
+        // Print the elements
+        System.out.println(greeting);
+        System.out.println(number);
+        System.out.println(flag);
+    }
+}
+----
+
+[start=2]
+. Highlight the code in the `Main` class, open Copilot chat, and type the following prompt.
+
+.Copilot Chat Prompt
+[source,text]
+/fix Please update this code to follow best practices. For the ArrayList, make it an ArrayList of strings
+
+[start=3]
+. Copilot should offer a fix similar to this:
+
+.Copilot Proposed Change: Main.java
+[source,java]
+----
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Initialize an ArrayList with specified type
+        List<String> list = new ArrayList<>();
+        list.add("Hello");
+        list.add("123");
+        list.add("true");
+
+        // Access elements without casting
+        String greeting = list.get(0);
+        String number = list.get(1);
+        String flag = list.get(2);
+
+        // Print the elements
+        System.out.println(greeting);
+        System.out.println(number);
+        System.out.println(flag);
+    }
+}
+----
+
+[start=4]
+. Accept the fix and run the code. The code should run without errors.
